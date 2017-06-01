@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="Lime1">#F9FBE7</color>
+    <color name="Lime2">#F4FF81</color>
+    <color name="F44336">#F44336</color>
+    <color name="EF5350">#EF5350</color>
+    <color name="Black">#000000</color>
+    <color name="Blue_Grey">#263238</color>
+    <color name="Teal900">#004D40</color>
+    <color name="Teal500">#009688</color>
+    <color name="overlay_color">#80000000</color>
+
+
+
+
+</resources>

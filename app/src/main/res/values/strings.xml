@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CsMsuClub</string>
+    <string name="open_drawer">Open Menu</string>
+    <string name="close_drawer">Close Menu</string>
+    <string name="title_activity_menu_group">กลุ่ม</string>
+    <string name="Home">Profile</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Login</string>
+    <string name="user_name">Android Studio</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

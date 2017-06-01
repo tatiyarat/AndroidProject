@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelGroup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imvgroup"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentLeft="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/no_img" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/imvgroup">
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tvnamegroupG"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:text="NameGroup"
+            android:textStyle="bold"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+</RelativeLayout>
