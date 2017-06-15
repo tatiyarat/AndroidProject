@@ -35,7 +35,6 @@ public class UpFragment extends Fragment implements View.OnClickListener {
     TextView tvname, tviduser;
     TextView tvemail, tvnickname, tvnumber;
     public SharedPreferences sharedPreferences;
-    String string;
     Button butup;
     String Semail, Snic, Snumber, Spass;
     TextView tvpass;
@@ -62,7 +61,7 @@ public class UpFragment extends Fragment implements View.OnClickListener {
         tvemail = (TextView) rootView.findViewById(R.id.tvemail);
         tvnickname = (TextView) rootView.findViewById(R.id.tvnickname);
         tvnumber = (TextView) rootView.findViewById(R.id.tvnumber);
-        tvpass = (TextView) rootView.findViewById(R.id.tvpass);
+//        tvpass = (TextView) rootView.findViewById(R.id.tvpass);
         imup = (ImageView) rootView.findViewById(R.id.imup);
         imup.setOnClickListener(this);
 
@@ -88,7 +87,7 @@ public class UpFragment extends Fragment implements View.OnClickListener {
                     tvnickname.setText(dao.getNickname());
                     tvnumber.setText(dao.getNumber());
                     tvemail.setText(dao.getMail());
-                    tvpass.setText(dao.getPass());
+//                    tvpass.setText(dao.getPass());
                 }
                 Glide.with(getContext())
                         .load(dao.getIm())
@@ -133,7 +132,7 @@ public class UpFragment extends Fragment implements View.OnClickListener {
         }
         if (v == butup) {
 
-            Spass = tvpass.getText().toString();
+//            Spass = tvpass.getText().toString();
             Snic = tvnickname.getText().toString();
             Snumber = tvnumber.getText().toString();
             Semail = tvemail.getText().toString();

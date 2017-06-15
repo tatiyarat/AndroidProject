@@ -11,8 +11,13 @@
     <color name="Blue_Grey">#263238</color>
     <color name="Teal900">#004D40</color>
     <color name="Teal500">#009688</color>
+    <color name="background">#358786</color>
+    <color name="background1">#287978</color>
+    <color name="Teal400">#76FF03</color>
+    <color name="Teal200">#64DD17</color>
     <color name="overlay_color">#80000000</color>
-
+    <color name="Light_Blue100">#80D8FF</color>
+    <color name="Light_Blue400">#00B0FF</color>
 
 
 

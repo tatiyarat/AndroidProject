@@ -37,7 +37,8 @@ public class HTTPManager {
 
         Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl(Constant.HTTP_SERVICE_URL)
-                .baseUrl("http://csmsucenter.com/cs_msu_club/PHPAndroid/")
+//                .baseUrl("http://csmsucenter.com/cs_msu_club/PHPAndroid/")
+                .baseUrl("http://202.28.34.201/CS_Msuclub/csmsuclub/PHPAndroid/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 

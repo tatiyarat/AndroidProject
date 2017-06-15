@@ -66,32 +66,69 @@ public class StatusListAdapter extends BaseAdapter {
     public int getItemViewType(int position) {
         if (dao.getData().get(position).getStatus().equals("") == true &&
                 dao.getData().get(position).getJoin().equals("1") == false &&
-                dao.getData().get(position).getFilestatus().equals("http://csmsucenter.com/cs_msu_club/Group2/") == true){
+                dao.getData().get(position).getFilestatus() != null
+//                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true
+            ){
             return 1;
         }
-        else if (dao.getData().get(position).getIMstatus().equals("http://csmsucenter.com/cs_msu_club/Group2/") == true &&
-                dao.getData().get(position).getJoin().equals("1") == false &&
-                dao.getData().get(position).getFilestatus().equals("http://csmsucenter.com/cs_msu_club/Group2/") == true){
+        else if (
+//                dao.getData().get(position).getIMstatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true &&
+//                dao.getData().get(position).getJoin().equals("1") == false &&
+//                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true
+                dao.getData().get(position).getIMstatus() == null &&
+                dao.getData().get(position).getFilestatus() == null &&
+                dao.getData().get(position).getJoin().equals("1") == false
+                ){
             return 2;
         }
-        else if (dao.getData().get(position).getJoin().equals("1") == true &&
+        else if (
+//                dao.getData().get(position).getJoin().equals("1") == true &&
+//                dao.getData().get(position).getStatus().equals("") == false &&
+//                dao.getData().get(position).getStatus() != null &&
+//                dao.getData().get(position).getIMstatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == false &&
+//                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true
+
+                dao.getData().get(position).getJoin().equals("1") == true &&
                 dao.getData().get(position).getStatus().equals("") == false &&
                 dao.getData().get(position).getStatus() != null &&
-                dao.getData().get(position).getIMstatus().equals("http://csmsucenter.com/cs_msu_club/Group2/") == false &&
-                dao.getData().get(position).getFilestatus().equals("http://csmsucenter.com/cs_msu_club/Group2/") == true){
+                dao.getData().get(position).getIMstatus() != null &&
+                dao.getData().get(position).getFilestatus() == null
+
+                ){
             return 3;
-        }else if (dao.getData().get(position).getJoin().equals("1") == true &&
+        }else if (
+
+//                dao.getData().get(position).getJoin().equals("1") == true &&
+//                dao.getData().get(position).getStatus().equals("") == false &&
+//                dao.getData().get(position).getIMstatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true &&
+//                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true
+
+                dao.getData().get(position).getJoin().equals("1") == true &&
                 dao.getData().get(position).getStatus().equals("") == false &&
-                dao.getData().get(position).getIMstatus().equals("http://csmsucenter.com/cs_msu_club/Group2/") == true &&
-                dao.getData().get(position).getFilestatus().equals("http://csmsucenter.com/cs_msu_club/Group2/") == true){
+                dao.getData().get(position).getIMstatus() == null &&
+                dao.getData().get(position).getFilestatus() == null
+
+                ){
             return 4;
-        }else if (dao.getData().get(position).getJoin().equals("1") == true &&
+        }else if (
+//                dao.getData().get(position).getJoin().equals("1") == true &&
+//                dao.getData().get(position).getStatus().equals("") == true &&
+//                dao.getData().get(position).getStatus() != null &&
+//                dao.getData().get(position).getIMstatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == false &&
+//                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true
+
+                dao.getData().get(position).getJoin().equals("1") == true &&
                 dao.getData().get(position).getStatus().equals("") == true &&
                 dao.getData().get(position).getStatus() != null &&
-                dao.getData().get(position).getIMstatus().equals("http://csmsucenter.com/cs_msu_club/Group2/") == false &&
-                dao.getData().get(position).getFilestatus().equals("http://csmsucenter.com/cs_msu_club/Group2/") == true){
+                dao.getData().get(position).getIMstatus() != null &&
+                dao.getData().get(position).getFilestatus() == null
+                ){
             return 5;
-        }else if (dao.getData().get(position).getFilestatus().equals("http://csmsucenter.com/cs_msu_club/Group2/") == false){
+        }else if (
+
+//                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == false
+                dao.getData().get(position).getFilestatus() != null
+                ){
             return 6;
         }
         else {
@@ -109,7 +146,7 @@ public class StatusListAdapter extends BaseAdapter {
         int type = getItemViewType(position);
 
        if (type == 2){
-           Log.e("xxx","2222");
+           Log.e("ข้อความ","2222");
            StatusNonImStatusListltem item;
            if (convertView != null)
                item = (StatusNonImStatusListltem) convertView;
@@ -124,7 +161,7 @@ public class StatusListAdapter extends BaseAdapter {
            return item;
 
        }else if (type == 1){
-           Log.e("xxx","1111");
+           Log.e("ภาพ","1111");
            StatusNonStatusListltem item;
            if (convertView != null)
                item = (StatusNonStatusListltem) convertView;
@@ -138,7 +175,7 @@ public class StatusListAdapter extends BaseAdapter {
            item.setImStatus(dao.getIMstatus());
            return item;
        }else if (type == 3){
-           Log.e("xxx","3333");
+           Log.e("จอย+ข้อความ+ภาพ","3333");
            JoinMessageListltem item;
            if (convertView != null)
                item = (JoinMessageListltem) convertView;
@@ -154,10 +191,9 @@ public class StatusListAdapter extends BaseAdapter {
            item.setImMessage(dao.getIMstatus());
            item.setDataJoin(dao.getDataremind().toString()+" "+dao.getTimeremind());
 
-
            return item;
        }else if (type == 4){
-           Log.e("xxx","4444");
+           Log.e("จอย+ภาพ","4444");
            JoinMessageNonImListltem item;
            if (convertView != null)
                item = (JoinMessageNonImListltem) convertView;
@@ -173,7 +209,7 @@ public class StatusListAdapter extends BaseAdapter {
 
            return item;
        }else if (type == 5){
-           Log.e("xxx","555");
+           Log.e("จอย+ภาพ","555");
            JoinMessageNomMessgeListltem item;
            if (convertView != null)
                item = (JoinMessageNomMessgeListltem) convertView;
@@ -190,7 +226,7 @@ public class StatusListAdapter extends BaseAdapter {
 
            return item;
        }else if (type == 6){
-           Log.e("xxx","666");
+           Log.e("ไฟล์","666");
            JoinMessageFileNonMessageListltem item;
            if (convertView != null)
                item = (JoinMessageFileNonMessageListltem) convertView;
@@ -205,7 +241,7 @@ public class StatusListAdapter extends BaseAdapter {
            item.setIDS(dao.getSid());
            return item;
        }else{
-           Log.e("xxx","0000");
+           Log.e("ข้อความ+ภาพ","0000");
            StatusListltem item;
            if (convertView != null)
                item = (StatusListltem) convertView;

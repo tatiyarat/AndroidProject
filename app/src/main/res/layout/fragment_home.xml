@@ -16,18 +16,19 @@
             <ImageView
                 android:id="@+id/homeuser"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:src="@drawable/side_profile" />
+                android:layout_height="130dp"
+                android:src="@color/background" />
 
-            <ImageView
-                android:scaleType="centerCrop"
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/imuser"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/profileuser" />
-
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="35dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profileuser"
+                app:civ_border_color="#c7cac7"
+                app:civ_border_width="2dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,29 +37,15 @@
                 android:layout_margin="20dp"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tvname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:text="ชื่อ-สกุล" />
-
-                    <TextView
-                        android:id="@+id/tvname"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:fontFamily="Arial"
-                        android:text="name"
-                        android:textColor="@color/Blue_Grey"
-                        android:textSize="16dp" />
-                </LinearLayout>
+                    android:fontFamily="Arial"
+                    android:gravity="center"
+                    android:text="name"
+                    android:textColor="#616161"
+                    android:textSize="24dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -70,14 +57,15 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.6"
+                        android:layout_weight="0.5"
                         android:text="รหัสนิสิต" />
 
                     <TextView
                         android:id="@+id/tviduser"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
+                        android:layout_weight="1.5"
+                        android:gravity="right"
                         android:text="IDUSER"
                         android:textColor="@color/Blue_Grey"
                         android:textSize="16dp" />
@@ -93,14 +81,15 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.6"
+                        android:layout_weight="0.5"
                         android:text="ชื่อเล่น" />
 
                     <TextView
                         android:id="@+id/tvnickname"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
+                        android:layout_weight="1.5"
+                        android:gravity="right"
                         android:text="ชื่อเล่น"
                         android:textColor="@color/Blue_Grey"
                         android:textSize="16dp" />
@@ -116,14 +105,15 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.6"
+                        android:layout_weight="0.5"
                         android:text="เบอร์โทร" />
 
                     <TextView
                         android:id="@+id/tvnumber"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
+                        android:layout_weight="1.5"
+                        android:gravity="right"
                         android:text="เบอร์โทร"
                         android:textColor="@color/Blue_Grey"
                         android:textSize="16dp" />
@@ -139,19 +129,19 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.6"
+                        android:layout_weight="0.5"
                         android:text="E-mail" />
 
                     <TextView
                         android:id="@+id/tvemail"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
+                        android:layout_weight="1.5"
+                        android:gravity="right"
                         android:text="email"
                         android:textColor="@color/Blue_Grey"
                         android:textSize="16dp" />
                 </LinearLayout>
-
 
             </LinearLayout>
         </RelativeLayout>

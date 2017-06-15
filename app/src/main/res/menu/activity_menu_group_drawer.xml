@@ -4,11 +4,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_action_action_account_box"
+            android:icon="@drawable/user"
             android:title="Profile" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_action_communication_quick_contacts_mail"
+            android:icon="@drawable/book"
             android:title="กลุ่ม" />
     </group>
 
@@ -20,7 +20,7 @@
                 <!--android:title="Share" />-->
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/logout"
                 android:title="ออกจากระบบ" />
         </menu>
     </item>

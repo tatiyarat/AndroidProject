@@ -48,7 +48,6 @@ public interface APIService {
                               @Field("LIMIT") int LIMIT,
                               @Field("OFFSET") int OFFSET);
 
-
     @FormUrlEncoded
     @POST("status.php")
     Call<PhotoItemCollectinDao> getstatus(@Field("IDG") int idg);
