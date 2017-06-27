@@ -1,9 +1,12 @@
 package com.techin1.androidproject.manager.http;
 
 
+import com.techin1.androidproject.dao.GroupJoinDataDao;
 import com.techin1.androidproject.dao.Groups;
+import com.techin1.androidproject.dao.GroupsJoinDao;
 import com.techin1.androidproject.dao.Home;
 import com.techin1.androidproject.dao.Login;
+import com.techin1.androidproject.dao.LogoutDao;
 import com.techin1.androidproject.dao.MessageDao;
 import com.techin1.androidproject.dao.PhotoItemCollectinDao;
 import com.techin1.androidproject.dao.StatusDao;
@@ -28,7 +31,8 @@ public interface APIService {
     @FormUrlEncoded
     @POST("chklogin.php")
     Call<Login> getUser(@Field("IDuser") String user,
-                        @Field("Passuser") String pass);
+                        @Field("Passuser") String pass,
+                        @Field("Token") String token);
 
     @FormUrlEncoded
     @POST("home.php")
@@ -61,5 +65,12 @@ public interface APIService {
     Call<inuserjoinDao> getjoin(@Field("IDU") int idu,
                                 @Field("IDS") int ids);
 
+    @FormUrlEncoded
+    @POST("groupjoin.php")
+    Call<GroupJoinDataDao> getgrojoin(@Field("idu") int idu);
+
+    @FormUrlEncoded
+    @POST("logout.php")
+    Call<LogoutDao> gettoken(@Field("token") String token);
 
 }

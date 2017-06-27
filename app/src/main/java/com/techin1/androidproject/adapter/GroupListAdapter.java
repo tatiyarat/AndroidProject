@@ -75,6 +75,7 @@ public class GroupListAdapter extends BaseAdapter {
 
         Glide.with(parent.getContext())
                 .load(gm.get(position).getIMGroup())
+                .placeholder(R.drawable.loading2)
                 .into(holder.imvgroup);
 
         return vi;

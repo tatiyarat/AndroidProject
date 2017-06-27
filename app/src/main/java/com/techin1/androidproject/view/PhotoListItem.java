@@ -2,9 +2,11 @@ package com.techin1.androidproject.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 
 import com.inthecheesefactory.thecheeselibrary.view.BaseCustomViewGroup;
 import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
@@ -14,6 +16,13 @@ import com.techin1.androidproject.R;
  * Created by nuuneoi on 11/16/2014.
  */
 public class PhotoListItem extends BaseCustomViewGroup {
+
+    private int[] slider_image = {
+            R.drawable.user,
+            R.drawable.im1,
+            R.drawable.im2,
+            R.drawable.im3,
+    };
 
     public PhotoListItem(Context context) {
         super(context);
@@ -49,6 +58,9 @@ public class PhotoListItem extends BaseCustomViewGroup {
 
     private void initInstances() {
         // findViewById here
+//        slider_image = (ImageView) findViewById(R.id.slider_image);
+
+
     }
 
     private void initWithAttrs(AttributeSet attrs, int defStyleAttr, int defStyleRes) {

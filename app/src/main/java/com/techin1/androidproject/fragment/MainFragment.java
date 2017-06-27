@@ -40,9 +40,9 @@ public class MainFragment extends Fragment {
 
     private void initInstances(View rootView) {
         // Init 'View' instance(s) with rootView.findViewById here
-        listView = (ListView) rootView.findViewById(R.id.listView);
-        listAdapter = new PhotoListAdapter();
-        listView.setAdapter(listAdapter);
+//        listView = (ListView) rootView.findViewById(R.id.listView);
+//        listAdapter = new PhotoListAdapter();
+//        listView.setAdapter(listAdapter);
     }
 
     @Override

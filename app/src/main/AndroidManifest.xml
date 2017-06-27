@@ -36,19 +36,36 @@
         <activity
             android:name=".activity.InMessage_JoinActivity"
             android:theme="@style/AppThemeMessage" />
-        <activity android:name=".activity.RemindActivity"></activity>
+        <activity
+            android:name=".activity.ImageStausActivity"
+            android:theme="@style/AppThemeMessage" />
+        <activity
+            android:name=".activity.ViewpagerImageActivity"
+            android:theme="@style/AppThemeMessage" />
+        <activity
+            android:name=".activity.M_Image_JoinActivity"
+            android:theme="@style/AppThemeMessage" />
+        <activity
+            android:name=".activity.M_Message_JoinActivity"
+            android:theme="@style/AppThemeMessage" />
+
+        <activity android:name=".activity.RemindActivity" />
 
         <service android:name=".Service.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".Service.FirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".activity.MessageInMessageActivity"
+            android:theme="@style/AppThemeMessage" >
+        </activity>
 
     </application>
 

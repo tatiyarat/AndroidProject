@@ -44,8 +44,6 @@ public class HomeFragment extends Fragment{
         // Required empty public constructor
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,8 +69,8 @@ public class HomeFragment extends Fragment{
 
         butup = (Button) rootView.findViewById(R.id.butup);
 
-        FirebaseMessaging.getInstance().subscribeToTopic("test");
-        FirebaseInstanceId.getInstance().getToken();
+//        FirebaseMessaging.getInstance().subscribeToTopic("test");
+//        FirebaseInstanceId.getInstance().getToken();
 
         String token = FirebaseInstanceId.getInstance().getToken();
         Toast.makeText(getActivity(), token, Toast.LENGTH_SHORT).show();

@@ -25,8 +25,11 @@ import com.techin1.androidproject.R;
 import com.techin1.androidproject.activity.MenuGroupActivity;
 import com.techin1.androidproject.activity.MessageActivity;
 import com.techin1.androidproject.activity.StatusActivity;
+import com.techin1.androidproject.dao.StatusDao;
 import com.techin1.androidproject.dao.inuserjoinDao;
 import com.techin1.androidproject.manager.HTTPManager;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +46,7 @@ public class JoinMessageNomMessgeListltem extends BaseCustomViewGroup {
     TextView tvnameusergroup;
     TextView tvDataPost;
 
-    ImageView joinpost;
+    TextView joinpost;
     TextView tvDataJoin;
 
     RelativeLayout idmessger;
@@ -94,7 +97,7 @@ public class JoinMessageNomMessgeListltem extends BaseCustomViewGroup {
 
         tvnameusergroup = (TextView) findViewById(R.id.tvnameusergroup);
         tvDataPost = (TextView) findViewById(R.id.tvDataPost);
-        joinpost = (ImageView) findViewById(R.id.joinpost);
+        joinpost = (TextView) findViewById(R.id.joinpost);
         tvDataJoin = (TextView) findViewById(R.id.tvDataJoin);
 
         idmessger = (RelativeLayout) findViewById(R.id.idmessger);
@@ -188,6 +191,7 @@ public class JoinMessageNomMessgeListltem extends BaseCustomViewGroup {
     public void setImUset(String ImUser) {
         Glide.with(getContext())
                 .load(ImUser)
+                .placeholder(R.drawable.load)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imuser);
     }
@@ -195,6 +199,7 @@ public class JoinMessageNomMessgeListltem extends BaseCustomViewGroup {
     public void setImMessage(String IM) {
         Glide.with(getContext())
                 .load(IM)
+                .placeholder(R.drawable.loading2)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageStatus);
     }

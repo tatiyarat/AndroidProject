@@ -3,7 +3,9 @@ package com.techin1.androidproject.Service;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
@@ -22,12 +24,19 @@ import com.techin1.androidproject.fragment.StatusFragment;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService{
 
+    public SharedPreferences sharedPreferences;
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         showNotification(remoteMessage.getData().get("message"));
     }
 
     private void showNotification(String message) {
+
+        SharedPreferences sp = getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("idgroup", Integer.parseInt(message));
+        editor.commit();
 
         Intent i = new Intent(this,StatusActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -36,13 +45,13 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setAutoCancel(true)
-                .setContentTitle("FCM Test")
+                .setContentTitle("ข้อความใหม่"+message)
                 .setWhen(System.currentTimeMillis())
                 .setContentText(message)
                 .setSmallIcon(R.drawable.ic_communication_email)
                 .setContentIntent(pendingIntent);
 
-        Uri sound = RingtoneManager.getDefaultUri(Notification.DEFAULT_VIBRATE);
+        Uri sound = RingtoneManager.getDefaultUri(Notification.DEFAULT_SOUND);
         builder.setSound(sound);
 
         Bitmap picture = BitmapFactory.decodeResource(getResources(), R.drawable.ic_content_drafts);

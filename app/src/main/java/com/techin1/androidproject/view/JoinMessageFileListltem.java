@@ -26,8 +26,7 @@ public class JoinMessageFileListltem extends BaseCustomViewGroup {
     TextView tvDataPost;
     TextView tvstatus;
     TextView tvfile;
-
-
+    private int ids;
 
     public JoinMessageFileListltem(Context context) {
         super(context);
@@ -58,7 +57,7 @@ public class JoinMessageFileListltem extends BaseCustomViewGroup {
     }
 
     private void initInflate() {
-        inflate(getContext(), R.layout.list_item_status_join_file2, this);
+        inflate(getContext(), R.layout.list_item_status_file, this);
     }
 
     private void initInstances() {
@@ -103,7 +102,7 @@ public class JoinMessageFileListltem extends BaseCustomViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int width = MeasureSpec.getSize(widthMeasureSpec); // ไดเความกว้าง
-        int height = width * 2 / 4;
+        int height = width * 3 / 5;
         int  newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
                 height,
                 MeasureSpec.EXACTLY
@@ -122,15 +121,22 @@ public class JoinMessageFileListltem extends BaseCustomViewGroup {
         tvDataPost.setText(text);
     }
     public void setFileStatus(String text){
+
+    }
+    public void setFileName(String text){
         tvfile.setText(text);
     }
     public void setStatus(String text) {
         tvstatus.setText(text);
     }
 
+    public void setIDS(int text) {
+        ids = text;
+    }
     public void setImUset(String ImUser){
         Glide.with(getContext())
                 .load(ImUser)
+                .placeholder(R.drawable.load)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imuser);
     }

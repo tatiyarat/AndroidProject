@@ -13,6 +13,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.inthecheesefactory.thecheeselibrary.view.BaseCustomViewGroup;
 import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
 import com.techin1.androidproject.R;
+import com.techin1.androidproject.dao.StatusDao;
+
+import java.util.List;
 
 /**
  * Created by nuuneoi on 11/16/2014.
@@ -127,12 +130,14 @@ public class StatusNonStatusListltem extends BaseCustomViewGroup {
     public void setImStatus(String ImUserStaus){
         Glide.with(getContext())
                 .load(ImUserStaus)
+                .placeholder(R.drawable.loading2)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(im_non_message);
     }
     public void setUserStatus(String ImUserStaus){
         Glide.with(getContext())
                 .load(ImUserStaus)
+                .placeholder(R.drawable.load)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imuser_non_message);
     }

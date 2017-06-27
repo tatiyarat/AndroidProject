@@ -80,6 +80,7 @@ public class InMessageNonImActivity extends AppCompatActivity {
 
                     tvnamegroup.setText(dao.getUser());
                     tvstatus.setText(dao.getStatus());
+                    tvDatapost.setText(dao.getTime());
 
                     Glide.with(getApplicationContext())
                             .load(dao.getIMuser())
@@ -90,7 +91,6 @@ public class InMessageNonImActivity extends AppCompatActivity {
                             .load(dao.getIMstatus())
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(immessagr);
-
                 }
             }
 

@@ -117,7 +117,7 @@ public class JoinMessageFileNonMessageListltem extends BaseCustomViewGroup {
     public void setDataPost(String text){
         tvDataPost.setText(text);
     }
-    public void setFileStatus(String text){
+    public void setFileName(String text){
         tvfile.setText(text);
     }
     public void setIDS(int text) {
@@ -127,6 +127,7 @@ public class JoinMessageFileNonMessageListltem extends BaseCustomViewGroup {
     public void setImUset(String ImUser){
         Glide.with(getContext())
                 .load(ImUser)
+                .placeholder(R.drawable.load)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imuser);
     }

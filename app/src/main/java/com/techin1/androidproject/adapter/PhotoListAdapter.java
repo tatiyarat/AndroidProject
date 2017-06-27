@@ -1,82 +1,78 @@
 package com.techin1.androidproject.adapter;
 
 
+import android.content.Context;
+import android.support.v4.view.PagerAdapter;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
+import android.widget.ImageView;
 
-import com.techin1.androidproject.manager.PhotoListManager;
-import com.techin1.androidproject.view.PhotoListItem;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.techin1.androidproject.R;
+import com.techin1.androidproject.dao.MessageDao;
+
 
 /**
  * Created by TECHIN1 on 25/10/2559.
  */
 
-public class PhotoListAdapter extends BaseAdapter {
+public class PhotoListAdapter extends PagerAdapter {
 
+    MessageDao dao;
+
+    private Context ctx;
+    private LayoutInflater inflater;
+
+    public PhotoListAdapter(Context ctx) {
+        this.ctx = ctx;
+    }
+
+    public void setDao(MessageDao dao) {
+        this.dao = dao;
+    }
 
     @Override
     public int getCount() {
-//        if (PhotoListManager.getInstances().getIduser() == 0)
-//            return 0;
-//        if (PhotoListManager.getInstances().getIduser() == 0)
-//            return 0;
-//        return PhotoListManager.getInstances().getIduser();
-        return 100;
+        if (dao == null)
+            return 0;
+        if (dao.getIMstatus() == null)
+            return 0;
+        return dao.getIMstatus().size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;
     }
 
     @Override
-    public long getItemId(int position) {
-        return 0;
-    }
+    public Object instantiateItem(ViewGroup container, int position) {
 
-//    @Override
-//    public int getViewTypeCount() {
-//        return 2;
-//    }
-//
-//    @Override
-//    public int getItemViewType(int position) {
-//        return position %2 == 0 ? 0 : 1;
-//    }
+        String url = dao.getIMstatus().get(position);
+        inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.list_view_images, container, false);
+        ImageView img = (ImageView) v.findViewById(R.id.immessagr);
+
+        Glide.with(ctx)
+                .load(url)
+                .placeholder(R.drawable.loading2)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(img);
+
+        container.addView(v);
+        return v;
+
+    }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        PhotoListItem item;
-        if (convertView != null)
-            item = (PhotoListItem) convertView;
-        else
-            item = new PhotoListItem(parent.getContext());
-        return item;
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((View) object);
 
     }
+
+
 }
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        if (getItemViewType(position) == 0){
-//            PhotoListItem item;
-//            if (convertView != null)
-//                item = (PhotoListItem) convertView;
-//            else
-//                item = new PhotoListItem(parent.getContext());
-//            return item;
-//        }
-//        else {
-//            TextView item;
-//            if (convertView != null)
-//                item = (TextView) convertView;
-//            else
-//                item = new TextView(parent.getContext());
-//            item.setText("Positlion: " + position);
-//            return item;
-//        }
-//
-//    }
+
 

@@ -10,20 +10,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.techin1.androidproject.GroupActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.techin1.androidproject.LoginActivity;
 import com.techin1.androidproject.R;
 import com.techin1.androidproject.Session;
 import com.techin1.androidproject.dao.Home;
+import com.techin1.androidproject.dao.LogoutDao;
 import com.techin1.androidproject.fragment.GoupMenuFragment;
+import com.techin1.androidproject.fragment.GroupJoinFragment;
 import com.techin1.androidproject.fragment.HomeFragment;
-import com.techin1.androidproject.fragment.MainFragment;
 import com.techin1.androidproject.fragment.UpFragment;
 import com.techin1.androidproject.manager.HTTPManager;
 
@@ -35,9 +36,11 @@ public class MenuGroupActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Session session;
-    private TextView tvNameUserGroup,textView;
+    private TextView tvNameUserGroup, textView;
     private SharedPreferences sharedPreferences;
     private int idu;
+
+    String token = FirebaseInstanceId.getInstance().getToken();
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
@@ -86,7 +89,7 @@ public class MenuGroupActivity extends AppCompatActivity
         textView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.textView);
 
         sharedPreferences = getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
-        idu = sharedPreferences.getInt("iduser",0);
+        idu = sharedPreferences.getInt("iduser", 0);
         gethomeuser(idu);
 
         init();
@@ -96,7 +99,6 @@ public class MenuGroupActivity extends AppCompatActivity
     private void init() {
         session = new Session(this);
     }
-
 
 
     @Override
@@ -136,10 +138,38 @@ public class MenuGroupActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void logout(){
+    private void logout() {
         session.setLoggedin(false);
         finish();
-        startActivity(new Intent(MenuGroupActivity.this,LoginActivity.class));
+        startActivity(new Intent(MenuGroupActivity.this, LoginActivity.class));
+
+        Call<LogoutDao> call = HTTPManager.getInstances().getService().gettoken(token);
+        call.enqueue(new Callback<LogoutDao>() {
+            @Override
+            public void onResponse(Call<LogoutDao> call, Response<LogoutDao> response) {
+                LogoutDao dao = response.body();
+                if (response.isSuccessful()) {
+
+                    Toast.makeText(getApplication(), "Logout"
+                            , Toast.LENGTH_LONG)
+                            .show();
+                } else {
+                    Toast.makeText(getApplication(), "Log out fail!"
+                            , Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LogoutDao> call, Throwable t) {
+                Toast.makeText(getApplication(), t.toString()
+                        , Toast.LENGTH_LONG)
+                        .show();
+
+                Log.e("error",t.toString());
+            }
+        });
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -164,8 +194,16 @@ public class MenuGroupActivity extends AppCompatActivity
 
             Toast.makeText(this, "Group", Toast.LENGTH_SHORT).show();
 
-        }
-        else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_gallery2) {
+            GroupJoinFragment fragment = new GroupJoinFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+
+            Toast.makeText(this, "Group", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.nav_send) {
             logout();
         }
 
@@ -190,7 +228,7 @@ public class MenuGroupActivity extends AppCompatActivity
 
             @Override
             public void onFailure(Call<Home> call, Throwable t) {
-                Toast.makeText(MenuGroupActivity.this,"NO..."
+                Toast.makeText(MenuGroupActivity.this, "NO..."
                         , Toast.LENGTH_LONG)
                         .show();
             }

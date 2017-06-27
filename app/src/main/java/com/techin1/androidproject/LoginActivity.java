@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.techin1.androidproject.activity.MenuGroupActivity;
 import com.techin1.androidproject.dao.Login;
 import com.techin1.androidproject.manager.HTTPManager;
@@ -25,6 +28,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button butlogin;
     String iduser,passuser;
     private Session session;
+    String token = FirebaseInstanceId.getInstance().getToken();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +57,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (v == butlogin){
             iduser = etuser.getText().toString();
             passuser = etpass.getText().toString();
-            getResponseLogin(iduser,passuser);
+            getResponseLogin(iduser,passuser,token);
 //            Intent intent = new Intent(LoginActivity.this,
 //                    HomeActivity.class);
 //            startActivity(intent);
 
         }
     }
-    private void getResponseLogin(String user, String pass) {
+    private void getResponseLogin(String user, String pass, String token) {
 
-        Call<Login> call = HTTPManager.getInstances().getService().getUser(user, pass);
+        Call<Login> call = HTTPManager.getInstances().getService().getUser(user, pass, token);
         call.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
@@ -86,14 +90,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         editor.putInt("iduser", id);
                         editor.commit();
 
-//                        intent.putExtra("id",dao.getId());
-//                        intent.putExtra("name",dao.getName());
-//                        intent.putExtra("iduser",dao.getIduser());
-//                        intent.putExtra("pass",dao.getPass());
-//                        intent.putExtra("nickname",dao.getNickname());
-//                        intent.putExtra("number",dao.getNumber());
-//                        intent.putExtra("mail",dao.getMail());
-//                        intent.putExtra("im",dao.getIm());
+                        FirebaseMessaging.getInstance().subscribeToTopic(""+id);
+                        FirebaseInstanceId.getInstance().getToken();
 
                     startActivity(intent);
                         finish();
@@ -109,7 +107,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(Call<Login> call, Throwable t) {
-                Toast.makeText(LoginActivity.this,"NO..."
+                Toast.makeText(LoginActivity.this, t.toString()
                         , Toast.LENGTH_LONG)
                         .show();
 

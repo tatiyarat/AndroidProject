@@ -13,8 +13,6 @@ import com.techin1.androidproject.fragment.StatusFragment;
 
 public class StatusActivity extends AppCompatActivity {
 
-    TextView text;
-    int IDG;
     Toolbar toolbar;
 
     @Override
@@ -39,11 +37,6 @@ public class StatusActivity extends AppCompatActivity {
 
     private void initInstances() {
 
-//        Intent intent = getIntent();
-//        IDG = intent.getIntExtra("IDG",0);
-//
-//        text = (TextView) findViewById(R.id.tvtext);
-//        text.setText(""+IDG);
 
     }
 

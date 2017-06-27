@@ -181,6 +181,7 @@ public class JoinMessageNonImListltem extends BaseCustomViewGroup {
     public void setImUset(String ImUser){
         Glide.with(getContext())
                 .load(ImUser)
+                .placeholder(R.drawable.load)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imuser);
     }

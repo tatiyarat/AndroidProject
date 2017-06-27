@@ -13,8 +13,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.inthecheesefactory.thecheeselibrary.view.BaseCustomViewGroup;
 import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
 import com.techin1.androidproject.R;
+import com.techin1.androidproject.dao.StatusDao;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by nuuneoi on 11/16/2014.
@@ -124,6 +126,7 @@ public class StatusListltem extends BaseCustomViewGroup {
     public void setUserStatus(String ImUserStaus) {
         Glide.with(getContext())
                 .load(ImUserStaus)
+                .placeholder(R.drawable.load)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imuser);
     }
@@ -134,6 +137,7 @@ public class StatusListltem extends BaseCustomViewGroup {
         } else {
             Glide.with(getContext())
                     .load(iMstatus)
+                    .placeholder(R.drawable.loading2)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imageStatus);
         }

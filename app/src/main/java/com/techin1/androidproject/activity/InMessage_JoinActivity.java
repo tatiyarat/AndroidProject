@@ -34,12 +34,12 @@ public class InMessage_JoinActivity extends AppCompatActivity {
     TextView tvstatus;
 
     ImageView immessagr;
-    ImageView joinpost;
+    TextView joinpost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_in_message_join);
+        setContentView(R.layout.activity_message_join);
 
 //        if (savedInstanceState == null){
 //            getSupportFragmentManager().beginTransaction()
@@ -68,7 +68,7 @@ public class InMessage_JoinActivity extends AppCompatActivity {
 
         imuser = (ImageView) findViewById(R.id.imuser);
         immessagr = (ImageView) findViewById(R.id.immessagr);
-        joinpost = (ImageView) findViewById(R.id.joinpost);
+        joinpost = (TextView) findViewById(R.id.joinpost);
         joinpost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +92,7 @@ public class InMessage_JoinActivity extends AppCompatActivity {
                             .show();
 
                     tvnamegroup.setText(dao.getUser());
+                    tvDatapost.setText(dao.getTime());
                     if (dao.getStatus().equals("") || dao.getStatus() == null){
                         tvstatus.setVisibility(View.GONE);
                     }else{
@@ -103,15 +104,14 @@ public class InMessage_JoinActivity extends AppCompatActivity {
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(imuser);
 
-                    if (dao.getIMstatus().equals("http://csmsucenter.com/cs_msu_club/Group2/")){
-                        immessagr.setVisibility(View.GONE);
-                    }else{
-                        Glide.with(getApplicationContext())
-                                .load(dao.getIMstatus())
-                                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                .into(immessagr);
-                    }
-
+//                    if (dao.getIMstatus().equals("")){
+//                        immessagr.setVisibility(View.GONE);
+//                    }else{
+//                        Glide.with(getApplicationContext())
+//                                .load(dao.getIMstatus())
+//                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                                .into(immessagr);
+//                    }
 
                 }
             }

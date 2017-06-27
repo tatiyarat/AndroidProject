@@ -1,17 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:baselineAligned="false"
     tools:context="com.techin1.androidproject.fragment.UpFragment">
 
-    <ScrollView
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <RelativeLayout
+            android:id="@+id/rel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/homeuser"
@@ -19,200 +23,205 @@
                 android:layout_height="130dp"
                 android:src="@color/background" />
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imuser"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="35dp"
+                android:cropToPadding="false"
                 android:scaleType="centerCrop"
                 android:src="@drawable/profileuser"
                 app:civ_border_color="#c7cac7"
                 app:civ_border_width="2dp" />
+        </RelativeLayout>
 
-            <LinearLayout
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rel"
+            android:fillViewport="true">
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/imuser"
-                android:layout_margin="20dp"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:text="ชื่อ-สกุล" />
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvname"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
                         android:fontFamily="Arial"
+                        android:gravity="center"
                         android:text="name"
-                        android:textColor="@color/Blue_Grey"
-                        android:textSize="16dp" />
-                </LinearLayout>
+                        android:textColor="#616161"
+                        android:textSize="24dp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:text="รหัสนิสิต" />
-
-                    <TextView
-                        android:id="@+id/tviduser"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:text="IDUSER"
-                        android:textColor="@color/Blue_Grey"
-                        android:textSize="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:text="รหัสผ่าน" />
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.4">
-
-                        <!--<TextView-->
-                        <!--android:padding="5dp"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:text="***********" />-->
                         <TextView
-                            android:id="@+id/tvpass"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:hint="Password"
+                            android:layout_weight="0.6"
+                            android:text="รหัสนิสิต" />
+
+                        <TextView
+                            android:id="@+id/tviduser"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.4"
+                            android:text="IDUSER"
                             android:textColor="@color/Blue_Grey"
                             android:textSize="16dp" />
+                    </LinearLayout>
 
-                        <ImageView
-                            android:id="@+id/imup"
-                            android:layout_width="20dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.6"
+                            android:text="รหัสผ่าน" />
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.4">
+
+                            <!--<TextView-->
+                            <!--android:padding="5dp"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:text="***********" />-->
+                            <TextView
+                                android:id="@+id/tvpass"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="Password"
+                                android:textColor="@color/Blue_Grey"
+                                android:textSize="16dp" />
+
+                            <ImageView
+                                android:id="@+id/imup"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginEnd="11dp"
+                                android:layout_marginRight="11dp"
+                                android:background="@drawable/update" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.6"
+                            android:text="ชื่อเล่น" />
+
+                        <EditText
+                            android:id="@+id/tvnickname"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginEnd="11dp"
-                            android:layout_marginRight="11dp"
-                            android:background="@drawable/ic_menu_manage" />
-                    </RelativeLayout>
+                            android:layout_weight="1.4"
+                            android:hint="ชื่อเล่น"
+                            android:singleLine="true"
+                            android:textColor="@color/Blue_Grey"
+                            android:textSize="16dp" />
+                    </LinearLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:text="ชื่อเล่น" />
-
-                    <EditText
-                        android:id="@+id/tvnickname"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:hint="ชื่อเล่น"
-                        android:singleLine="true"
-                        android:textColor="@color/Blue_Grey"
-                        android:textSize="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.6"
+                            android:text="เบอร์โทร" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:text="เบอร์โทร" />
+                        <EditText
+                            android:id="@+id/tvnumber"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.4"
+                            android:hint="เบอโทรศัพท์"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textColor="@color/Blue_Grey"
+                            android:textSize="16dp" />
+                    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/tvnumber"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:hint="เบอโทรศัพท์"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:textColor="@color/Blue_Grey"
-                        android:textSize="16dp" />
-                </LinearLayout>
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.6"
+                            android:text="E-mail" />
 
-                    <TextView
-                        android:layout_width="0dp"
+                        <EditText
+                            android:id="@+id/tvemail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.4"
+                            android:hint="email"
+                            android:singleLine="true"
+                            android:textColor="@color/Blue_Grey"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/butup"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:text="E-mail" />
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/selector_btn_updateuser"
+                        android:text="ยืมยัน" />
 
-                    <EditText
-                        android:id="@+id/tvemail"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:hint="email"
-                        android:singleLine="true"
-                        android:textColor="@color/Blue_Grey"
-                        android:textSize="16dp" />
                 </LinearLayout>
 
-                <Button
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/butup"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/selector_btn_updateuser"
-                    android:text="ยืมยัน" />
+            </FrameLayout>
+        </ScrollView>
 
-            </LinearLayout>
-        </RelativeLayout>
-    </ScrollView>
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,16 @@ import android.widget.Toast;
 
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 import com.techin1.androidproject.R;
+import com.techin1.androidproject.activity.ImageStausActivity;
 import com.techin1.androidproject.activity.InMessageActivity;
+import com.techin1.androidproject.activity.InMessageNonImActivity;
 import com.techin1.androidproject.activity.InMessage_JoinActivity;
+import com.techin1.androidproject.activity.M_Image_JoinActivity;
+import com.techin1.androidproject.activity.M_Message_JoinActivity;
 import com.techin1.androidproject.activity.MenuGroupActivity;
+import com.techin1.androidproject.activity.MessageInMessageActivity;
+import com.techin1.androidproject.activity.Message_Image_JoinActivity;
+import com.techin1.androidproject.activity.ViewpagerImageActivity;
 import com.techin1.androidproject.adapter.StatusListAdapter;
 import com.techin1.androidproject.dao.PhotoItemCollectinDao;
 import com.techin1.androidproject.manager.HTTPManager;
@@ -127,33 +135,107 @@ public class StatusFragment extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-//                            JoinMessageListltem item;
-//                            if (view != null)
-//                                item = (JoinMessageListltem) view;
-//                            else
-//                                item = new JoinMessageListltem(parent.getContext());
-//                            item.getIDS(dao.getStatus());
-
-                            if (dao.getData().get(position).getJoin().equals("1") == true){
+                            if (dao.getData().get(position).getFormat().equals("9") ==true){
+                                Log.e("ไพล์","9");
                                 Intent intent = new Intent(getActivity(),
-                                        InMessage_JoinActivity.class);
+                                        MessageInMessageActivity.class);
                                 idmessage = dao.getData().get(position).getSid();
                                 SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putInt("idmessage", idmessage);
                                 editor.commit();
                                 startActivity(intent);
-
-                            }
-                            else {
+                            } else if (dao.getData().get(position).getFormat().equals("10") ==true){
+                                Log.e("ไพล์","10");
                                 Intent intent = new Intent(getActivity(),
-                                        InMessageActivity.class);
+                                        MessageInMessageActivity.class);
                                 idmessage = dao.getData().get(position).getSid();
                                 SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putInt("idmessage", idmessage);
                                 editor.commit();
                                 startActivity(intent);
+                            }else if (dao.getData().get(position).getFormat().equals("6") ==true){
+                                Log.e("ไพล์","6");
+                                Intent intent = new Intent(getActivity(),
+                                        MessageInMessageActivity.class);
+                                idmessage = dao.getData().get(position).getSid();
+                                SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putInt("idmessage", idmessage);
+                                editor.commit();
+                                startActivity(intent);
+                            }else if (dao.getData().get(position).getFormat().equals("3") == true){
+                                Log.e("ไพล์","3");
+                                Intent intent = new Intent(getActivity(),
+                                        MessageInMessageActivity.class);
+                                idmessage = dao.getData().get(position).getSid();
+                                SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putInt("idmessage", idmessage);
+                                editor.commit();
+                                startActivity(intent);
+                            }else if (dao.getData().get(position).getFormat().equals("8") ==true){
+                                Log.e("ภาพ","8");
+                                Intent intent = new Intent(getActivity(),
+                                        M_Image_JoinActivity.class);
+                                idmessage = dao.getData().get(position).getSid();
+                                SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putInt("idmessage", idmessage);
+                                editor.commit();
+                                startActivity(intent);
+                            }else if (dao.getData().get(position).getFormat().equals("7") ==true){
+                                Log.e("geoup","7");
+                                Intent intent = new Intent(getActivity(),
+                                        ViewpagerImageActivity.class);
+                                idmessage = dao.getData().get(position).getSid();
+                                SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putInt("idmessage", idmessage);
+                                editor.commit();
+                                startActivity(intent);
+                            }else if ( dao.getData().get(position).getFormat().equals("4") == true){
+                                Log.e("ืข้อความ+จอย","M_Message_JoinActivity");
+                                Intent intent = new Intent(getActivity(),
+                                        M_Message_JoinActivity.class);
+                                idmessage = dao.getData().get(position).getSid();
+                                SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putInt("idmessage", idmessage);
+                                editor.commit();
+                                startActivity(intent);
+                            }else if (dao.getData().get(position).getFormat().equals("1") == true){
+//                                ข้อมความ
+                                Log.e("ข้อมความ","1");
+                                Intent intent = new Intent(getActivity(),
+                                        MessageInMessageActivity.class);
+                                idmessage = dao.getData().get(position).getSid();
+                                SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putInt("idmessage", idmessage);
+                                editor.commit();
+                                startActivity(intent);
+                            }else if (dao.getData().get(position).getFormat().equals("5") ==true){
+                                Log.e("geoup","5");
+                                Intent intent = new Intent(getActivity(),
+                                        ImageStausActivity.class);
+                                idmessage = dao.getData().get(position).getSid();
+                                SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putInt("idmessage", idmessage);
+                                editor.commit();
+                                startActivity(intent);
+                            }else {
+                                Log.e("geoup","2");
+                                Intent intent1 = new Intent(getActivity(),
+                                        ImageStausActivity.class);
+                                idmessage = dao.getData().get(position).getSid();
+                                SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putInt("idmessage", idmessage);
+                                editor.commit();
+                                startActivity(intent1);
                             }
 
                         }

@@ -23,10 +23,12 @@ import com.techin1.androidproject.LoginActivity;
 import com.techin1.androidproject.R;
 import com.techin1.androidproject.activity.MenuGroupActivity;
 import com.techin1.androidproject.dao.Login;
+import com.techin1.androidproject.dao.StatusDao;
 import com.techin1.androidproject.dao.inuserjoinDao;
 import com.techin1.androidproject.manager.HTTPManager;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +46,7 @@ public class JoinMessageListltem extends BaseCustomViewGroup implements View.OnC
     TextView tvDataPost;
     TextView tvstatus;
 
-    ImageView joinpost;
+    TextView joinpost;
     TextView tvDataJoin;
     public SharedPreferences sharedPreferences;
     private int idu;
@@ -95,7 +97,7 @@ public class JoinMessageListltem extends BaseCustomViewGroup implements View.OnC
         tvnameusergroup = (TextView) findViewById(R.id.tvnameusergroup);
         tvDataPost = (TextView) findViewById(R.id.tvDataPost);
         tvstatus = (TextView) findViewById(R.id.tvstatus);
-        joinpost = (ImageView) findViewById(R.id.joinpost);
+        joinpost = (TextView) findViewById(R.id.joinpost);
         tvDataJoin = (TextView) findViewById(R.id.tvDataJoin);
 
         joinpost.setOnClickListener(this);
@@ -165,6 +167,7 @@ public class JoinMessageListltem extends BaseCustomViewGroup implements View.OnC
     public void setImUset(String ImUser) {
         Glide.with(getContext())
                 .load(ImUser)
+                .placeholder(R.drawable.load)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imuser);
     }
@@ -172,6 +175,7 @@ public class JoinMessageListltem extends BaseCustomViewGroup implements View.OnC
     public void setImMessage(String IM) {
         Glide.with(getContext())
                 .load(IM)
+                .placeholder(R.drawable.loading2)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageStatus);
     }

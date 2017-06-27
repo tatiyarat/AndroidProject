@@ -14,12 +14,14 @@ public class StatusDao {
 
     @SerializedName("SID")
     private int sid;
+    @SerializedName("format")
+    private String format;
     @SerializedName("status")
     private String status;
-    @SerializedName("IMstatus")
-    private String IMstatus;
     @SerializedName("Filestatus")
     private String Filestatus;
+    @SerializedName("filename")
+    private String filename;
     @SerializedName("user")
     private String user;
     @SerializedName("gname")
@@ -34,7 +36,34 @@ public class StatusDao {
     private  String timeremind;
     @SerializedName("dataremind")
     private  String dataremind;
+    @SerializedName("IMstatus")
+    private  String IMstatus;
+    @SerializedName("g")
+    private int sumstatus;
 
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public int getSumstatus() {
+        return sumstatus;
+    }
+
+    public void setSumstatus(int sumstatus) {
+        this.sumstatus = sumstatus;
+    }
+
+    public String getIMstatus() {
+        return IMstatus;
+    }
+
+    public void setIMstatus(String IMstatus) {
+        this.IMstatus = IMstatus;
+    }
 
     public int getSid() {
         return sid;
@@ -52,20 +81,20 @@ public class StatusDao {
         this.status = status;
     }
 
-    public String getIMstatus() {
-        return IMstatus;
-    }
-
-    public void setIMstatus(String IMstatus) {
-        this.IMstatus = IMstatus;
-    }
-
     public String getFilestatus() {
         return Filestatus;
     }
 
     public void setFilestatus(String filestatus) {
         Filestatus = filestatus;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     public String getUser() {

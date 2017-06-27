@@ -2,10 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:drawable="@drawable/join3" android:state_pressed="true" />
-    <item android:drawable="@drawable/join2" android:state_selected="true" />
-    <item android:drawable="@drawable/join2" android:state_selected="true" />
-    <item android:drawable="@drawable/join3" android:state_focused="true"/>
-    <item android:drawable="@drawable/join4"/>
+    <item android:drawable="@drawable/button2_join" android:state_pressed="true" />
+    <item android:drawable="@drawable/button1_join"/>
 
 </selector>

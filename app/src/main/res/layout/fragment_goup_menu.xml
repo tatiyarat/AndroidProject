@@ -6,11 +6,11 @@
     tools:context="com.techin1.androidproject.fragment.GoupMenuFragment">
 
     <ListView
-        android:dividerHeight="5dp"
-        android:background="#E0EEEE"
         android:id="@+id/GlistView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#E0EEEE"
+        android:dividerHeight="5dp">
     </ListView>
 
 </LinearLayout>

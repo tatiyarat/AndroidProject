@@ -4,18 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/slider_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageButton
-            android:background="@color/EF5350"
-            android:layout_width="500px"
-            android:layout_height="500px"
-            android:layout_marginTop="108dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-    </RelativeLayout>
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

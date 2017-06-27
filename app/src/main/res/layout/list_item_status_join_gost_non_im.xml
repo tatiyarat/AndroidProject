@@ -60,53 +60,36 @@
                 android:layout_below="@id/rel1"
                 android:layout_marginBottom="50dp"
                 android:ellipsize="end"
+                android:text="xxxxxxxxx"
                 android:maxLines="5"
                 android:paddingTop="15dp" />
 
             <LinearLayout
-                android:id="@+id/linejoin"
-                android:layout_width="80dp"
-                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:layout_alignParentBottom="true"
-                android:gravity="center">
+                android:orientation="horizontal">
 
                 <TextView
-                    android:background="@drawable/selector_btn_default"
                     android:id="@+id/joinpost"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:background="@drawable/selector_join"
                     android:gravity="center"
-                    android:text="Join"
-                    android:textSize="20sp"
+                    android:text="เข้าร่วม"
+                    android:textColor="@color/White"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@id/linejoin"
-                android:gravity="center">
 
                 <TextView
                     android:id="@+id/tvDataJoin"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_toRightOf="@id/linejoin"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="เวลา"
-                    android:textSize="18dp" />
-            </LinearLayout>
+                    android:textSize="16dp" />
 
-            <!--<TextView-->
-            <!--android:id="@+id/tvDataJoin"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_toRightOf="@id/linejoin"-->
-            <!--android:gravity="center"-->
-            <!--android:text="เวลา"-->
-            <!--android:textSize="18dp" />-->
+            </LinearLayout>
 
 
         </RelativeLayout>

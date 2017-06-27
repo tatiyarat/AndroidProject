@@ -111,7 +111,6 @@ public class GoupMenuFragment extends Fragment {
                         idg = gm.get(position).getIDG();
 //                        intent.putExtra("IDG",gm.get(position).getIDG());
 
-
                         SharedPreferences sp = getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sp.edit();
                         editor.putInt("idgroup", idg);

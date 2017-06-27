@@ -2,7 +2,9 @@ package com.techin1.androidproject.dao;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by TECHIN1 on 14/11/2559.
@@ -10,24 +12,38 @@ import java.util.Date;
 
 public class MessageDao {
 
+    @SerializedName("format")
+    private String format;
     @SerializedName("SID")
     private int sid;
+    @SerializedName("result")
+    private int result;
     @SerializedName("status")
     private String status;
     @SerializedName("IMstatus")
-    private String IMstatus;
+    private List<String> IMstatus = new ArrayList<>();
     @SerializedName("Filestatus")
     private String Filestatus;
+    @SerializedName("filename")
+    private String filename;
     @SerializedName("user")
     private String user;
     @SerializedName("gname")
     private String gname;
     @SerializedName("time")
-    private Date time;
+    private String time;
     @SerializedName("IMuser")
     private String IMuser;
     @SerializedName("join")
     private String join;
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
 
     public int getSid() {
         return sid;
@@ -35,6 +51,14 @@ public class MessageDao {
 
     public void setSid(int sid) {
         this.sid = sid;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
     }
 
     public String getStatus() {
@@ -45,11 +69,11 @@ public class MessageDao {
         this.status = status;
     }
 
-    public String getIMstatus() {
+    public List<String> getIMstatus() {
         return IMstatus;
     }
 
-    public void setIMstatus(String IMstatus) {
+    public void setIMstatus(List<String> IMstatus) {
         this.IMstatus = IMstatus;
     }
 
@@ -59,6 +83,14 @@ public class MessageDao {
 
     public void setFilestatus(String filestatus) {
         Filestatus = filestatus;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     public String getUser() {
@@ -77,11 +109,11 @@ public class MessageDao {
         this.gname = gname;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

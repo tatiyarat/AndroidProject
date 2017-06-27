@@ -5,35 +5,35 @@
     android:orientation="vertical"
     tools:context="com.techin1.androidproject.fragment.HomeFragment">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/homeuser"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="130dp"
+            android:src="@color/background" />
 
-            <ImageView
-                android:id="@+id/homeuser"
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:src="@color/background" />
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imuser"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profileuser"
+            app:civ_border_color="#c7cac7"
+            app:civ_border_width="2dp" />
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/imuser"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/profileuser"
-                app:civ_border_color="#c7cac7"
-                app:civ_border_width="2dp" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/imuser">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/imuser"
                 android:layout_margin="20dp"
                 android:orientation="vertical">
 
@@ -144,7 +144,8 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </RelativeLayout>
-    </ScrollView>
+
+        </ScrollView>
+    </RelativeLayout>
 
 </LinearLayout>

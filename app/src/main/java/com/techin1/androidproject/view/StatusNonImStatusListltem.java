@@ -106,6 +106,7 @@ public class StatusNonImStatusListltem extends BaseCustomViewGroup {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int width = MeasureSpec.getSize(widthMeasureSpec); // ไดเความกว้าง
         int height = width * 2 / 3;
+//        int height = MeasureSpec.getSize(heightMeasureSpec);
         int  newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
                 height,
                 MeasureSpec.EXACTLY
@@ -128,6 +129,7 @@ public class StatusNonImStatusListltem extends BaseCustomViewGroup {
     public void setUserStatus(String ImUserStaus){
         Glide.with(getContext())
                 .load(ImUserStaus)
+                .placeholder(R.drawable.load)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imuser_non_im);
     }

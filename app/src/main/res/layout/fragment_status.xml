@@ -11,7 +11,7 @@
 
         <ListView
             android:dividerHeight="5dp"
-            android:divider="@color/Black"
+            android:divider="#b1aeae"
             android:background="#FAFAFA"
             android:id="@+id/listStatus"
             android:layout_width="match_parent"

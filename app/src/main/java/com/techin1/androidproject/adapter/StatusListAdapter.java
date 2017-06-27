@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import com.techin1.androidproject.dao.PhotoItemCollectinDao;
 import com.techin1.androidproject.dao.StatusDao;
 import com.techin1.androidproject.manager.PhotoListManager;
+import com.techin1.androidproject.view.FileMessageJoinListltem;
 import com.techin1.androidproject.view.JoinMessageFileListltem;
 import com.techin1.androidproject.view.JoinMessageFileNonMessageListltem;
 import com.techin1.androidproject.view.JoinMessageListltem;
@@ -39,11 +40,6 @@ public class StatusListAdapter extends BaseAdapter {
             return 0;
         return dao.getData().size();
 
-//        if (PhotoListManager.getInstances().getDao() == null)
-//            return 0;
-//        if (PhotoListManager.getInstances().getDao().getData() == null)
-//            return 0;
-//        return PhotoListManager.getInstances().getDao().getData().size();
     }
 
     @Override
@@ -58,30 +54,30 @@ public class StatusListAdapter extends BaseAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 7;
+        return 10;
 //        return super.getViewTypeCount();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (dao.getData().get(position).getStatus().equals("") == true &&
-                dao.getData().get(position).getJoin().equals("1") == false &&
-                dao.getData().get(position).getFilestatus() != null
+
+        if (
+                dao.getData().get(position).getStatus().equals("") == true &&
+                        dao.getData().get(position).getJoin().equals("1") == false &&
+                        dao.getData().get(position).getFilestatus().equals("") == true
 //                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true
-            ){
+                ) {
             return 1;
-        }
-        else if (
+        } else if (
 //                dao.getData().get(position).getIMstatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true &&
 //                dao.getData().get(position).getJoin().equals("1") == false &&
 //                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true
-                dao.getData().get(position).getIMstatus() == null &&
-                dao.getData().get(position).getFilestatus() == null &&
-                dao.getData().get(position).getJoin().equals("1") == false
-                ){
+                dao.getData().get(position).getIMstatus().equals("") == true &&
+                        dao.getData().get(position).getFilestatus().equals("") == true &&
+                        dao.getData().get(position).getJoin().equals("1") == false
+                ) {
             return 2;
-        }
-        else if (
+        } else if (
 //                dao.getData().get(position).getJoin().equals("1") == true &&
 //                dao.getData().get(position).getStatus().equals("") == false &&
 //                dao.getData().get(position).getStatus() != null &&
@@ -89,14 +85,13 @@ public class StatusListAdapter extends BaseAdapter {
 //                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true
 
                 dao.getData().get(position).getJoin().equals("1") == true &&
-                dao.getData().get(position).getStatus().equals("") == false &&
-                dao.getData().get(position).getStatus() != null &&
-                dao.getData().get(position).getIMstatus() != null &&
-                dao.getData().get(position).getFilestatus() == null
+                        dao.getData().get(position).getStatus().equals("") == false &&
+                        dao.getData().get(position).getIMstatus().equals("") == false &&
+                        dao.getData().get(position).getFilestatus().equals("") == true
 
-                ){
+                ) {
             return 3;
-        }else if (
+        } else if (
 
 //                dao.getData().get(position).getJoin().equals("1") == true &&
 //                dao.getData().get(position).getStatus().equals("") == false &&
@@ -104,13 +99,13 @@ public class StatusListAdapter extends BaseAdapter {
 //                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true
 
                 dao.getData().get(position).getJoin().equals("1") == true &&
-                dao.getData().get(position).getStatus().equals("") == false &&
-                dao.getData().get(position).getIMstatus() == null &&
-                dao.getData().get(position).getFilestatus() == null
+                        dao.getData().get(position).getStatus().equals("") == false &&
+                        dao.getData().get(position).getIMstatus().equals("") == true &&
+                        dao.getData().get(position).getFilestatus().equals("") == true
 
-                ){
+                ) {
             return 4;
-        }else if (
+        } else if (
 //                dao.getData().get(position).getJoin().equals("1") == true &&
 //                dao.getData().get(position).getStatus().equals("") == true &&
 //                dao.getData().get(position).getStatus() != null &&
@@ -118,20 +113,35 @@ public class StatusListAdapter extends BaseAdapter {
 //                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == true
 
                 dao.getData().get(position).getJoin().equals("1") == true &&
-                dao.getData().get(position).getStatus().equals("") == true &&
-                dao.getData().get(position).getStatus() != null &&
-                dao.getData().get(position).getIMstatus() != null &&
-                dao.getData().get(position).getFilestatus() == null
-                ){
+                        dao.getData().get(position).getStatus().equals("") == true &&
+                        dao.getData().get(position).getStatus() != null &&
+                        dao.getData().get(position).getIMstatus().equals("") == false &&
+                        dao.getData().get(position).getFilestatus().equals("") == true
+                ) {
             return 5;
-        }else if (
-
+        } else if (
 //                dao.getData().get(position).getFilestatus().equals("http://202.28.34.201/CS_Msuclub/csmsuclub/Home/Picture-messages/") == false
-                dao.getData().get(position).getFilestatus() != null
-                ){
+                dao.getData().get(position).getFilestatus().equals("") == false &&
+                        dao.getData().get(position).getStatus().equals("") == true &&
+                        dao.getData().get(position).getJoin().equals("1") == false
+                ) {
             return 6;
-        }
-        else {
+        } else if (
+                dao.getData().get(position).getFilestatus().equals("") == false &&
+                        dao.getData().get(position).getStatus().equals("") == false &&
+                        dao.getData().get(position).getJoin().equals("1") == false
+
+                ) {
+            return 7;
+        } else if (
+                dao.getData().get(position).getFilestatus().equals("") == false &&
+                        dao.getData().get(position).getStatus().equals("") == false &&
+                        dao.getData().get(position).getJoin().equals("1") == true
+                ) {
+            return 8;
+        }else if (dao.getData().get(position).getFormat().equals("10") == true) {
+            return 9;
+        } else {
             return 0;
         }
 //        return (dao.getData().get(position).getStatus().equals("") ? 0 : 1);
@@ -142,119 +152,170 @@ public class StatusListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 //        return new StatusListltem(parent.getContext());
 
-        View v= convertView;
+        View v = convertView;
         int type = getItemViewType(position);
 
-       if (type == 2){
-           Log.e("ข้อความ","2222");
-           StatusNonImStatusListltem item;
-           if (convertView != null)
-               item = (StatusNonImStatusListltem) convertView;
-           else
-               item = new StatusNonImStatusListltem(parent.getContext());
+        if (type == 2) {
+            Log.e("ข้อความ", "2222");
+            StatusNonImStatusListltem item;
+            if (convertView != null)
+                item = (StatusNonImStatusListltem) convertView;
+            else
+                item = new StatusNonImStatusListltem(parent.getContext());
 
-           StatusDao dao = (StatusDao) getItem(position);
-           item.setNameText(dao.getUser());
-           item.setDataPost(dao.getTime());
-           item.setStatus(dao.getStatus());
-           item.setUserStatus(dao.getIMuser());
-           return item;
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setNameText(dao.getUser());
+            item.setDataPost(dao.getTime());
+            item.setStatus(dao.getStatus());
+            item.setUserStatus(dao.getIMuser());
+            return item;
 
-       }else if (type == 1){
-           Log.e("ภาพ","1111");
-           StatusNonStatusListltem item;
-           if (convertView != null)
-               item = (StatusNonStatusListltem) convertView;
-           else
-               item = new StatusNonStatusListltem(parent.getContext());
+        } else if (type == 1) {
+            Log.e("ภาพ", "1111");
+            StatusNonStatusListltem item;
+            if (convertView != null)
+                item = (StatusNonStatusListltem) convertView;
+            else
+                item = new StatusNonStatusListltem(parent.getContext());
 
-           StatusDao dao = (StatusDao) getItem(position);
-           item.setnamegroup(dao.getUser());
-           item.setDataPost(dao.getTime());
-           item.setUserStatus(dao.getIMuser());
-           item.setImStatus(dao.getIMstatus());
-           return item;
-       }else if (type == 3){
-           Log.e("จอย+ข้อความ+ภาพ","3333");
-           JoinMessageListltem item;
-           if (convertView != null)
-               item = (JoinMessageListltem) convertView;
-           else
-               item = new JoinMessageListltem(parent.getContext());
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setnamegroup(dao.getUser());
+            item.setDataPost(dao.getTime());
+            item.setUserStatus(dao.getIMuser());
+            item.setImStatus(dao.getIMstatus());
+            return item;
+        } else if (type == 3) {
+            Log.e("จอย+ข้อความ+ภาพ", "3333");
+            JoinMessageListltem item;
+            if (convertView != null)
+                item = (JoinMessageListltem) convertView;
+            else
+                item = new JoinMessageListltem(parent.getContext());
 
-           StatusDao dao = (StatusDao) getItem(position);
-           item.setIDS(dao.getSid());
-           item.setUserName(dao.getUser());
-           item.setDataPost(dao.getTime());
-           item.setStatus(dao.getStatus());
-           item.setImUset(dao.getIMuser());
-           item.setImMessage(dao.getIMstatus());
-           item.setDataJoin(dao.getDataremind().toString()+" "+dao.getTimeremind());
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setIDS(dao.getSid());
+            item.setUserName(dao.getUser());
+            item.setDataPost(dao.getTime());
+            item.setStatus(dao.getStatus());
+            item.setImUset(dao.getIMuser());
+            item.setImMessage(dao.getIMstatus());
+            item.setDataJoin(dao.getDataremind().toString() + " " + dao.getTimeremind());
+            return item;
+        } else if (type == 4) {
+            Log.e("จอย+ข้อความ", "4444");
+            JoinMessageNonImListltem item;
+            if (convertView != null)
+                item = (JoinMessageNonImListltem) convertView;
+            else
+                item = new JoinMessageNonImListltem(parent.getContext());
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setUserName(dao.getUser());
+            item.setDataPost(dao.getTime());
+            item.setStatus(dao.getStatus());
+            item.setImUset(dao.getIMuser());
+            item.setIDS(dao.getSid());
+            item.setDataJoin(dao.getDataremind().toString() + " " + dao.getTimeremind());
+            return item;
+        } else if (type == 5) {
+            Log.e("จอย+ภาพ", "555");
+            JoinMessageNomMessgeListltem item;
+            if (convertView != null)
+                item = (JoinMessageNomMessgeListltem) convertView;
+            else
+                item = new JoinMessageNomMessgeListltem(parent.getContext());
 
-           return item;
-       }else if (type == 4){
-           Log.e("จอย+ภาพ","4444");
-           JoinMessageNonImListltem item;
-           if (convertView != null)
-               item = (JoinMessageNonImListltem) convertView;
-           else
-               item = new JoinMessageNonImListltem(parent.getContext());
-           StatusDao dao = (StatusDao) getItem(position);
-           item.setUserName(dao.getUser());
-           item.setDataPost(dao.getTime());
-           item.setStatus(dao.getStatus());
-           item.setImUset(dao.getIMuser());
-           item.setIDS(dao.getSid());
-           item.setDataJoin(dao.getDataremind().toString()+" "+dao.getTimeremind());
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setUserName(dao.getUser());
+            item.setDataPost(dao.getTime());
+            item.setImUset(dao.getIMuser());
+            item.setIDS(dao.getSid());
+            item.setImMessage(dao.getIMstatus());
+            item.setDataJoin(dao.getDataremind().toString() + " " + dao.getTimeremind());
 
-           return item;
-       }else if (type == 5){
-           Log.e("จอย+ภาพ","555");
-           JoinMessageNomMessgeListltem item;
-           if (convertView != null)
-               item = (JoinMessageNomMessgeListltem) convertView;
-           else
-               item = new JoinMessageNomMessgeListltem(parent.getContext());
+            return item;
+        } else if (type == 6) {
+            Log.e("ไฟล์", "666");
+            JoinMessageFileNonMessageListltem item;
+            if (convertView != null)
+                item = (JoinMessageFileNonMessageListltem) convertView;
+            else
+                item = new JoinMessageFileNonMessageListltem(parent.getContext());
 
-           StatusDao dao = (StatusDao) getItem(position);
-           item.setUserName(dao.getUser());
-           item.setDataPost(dao.getTime());
-           item.setImUset(dao.getIMuser());
-           item.setIDS(dao.getSid());
-           item.setImMessage(dao.getIMstatus());
-           item.setDataJoin(dao.getDataremind().toString()+" "+dao.getTimeremind());
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setUserName(dao.getUser());
+            item.setDataPost(dao.getTime());
+            item.setFileName(dao.getFilename());
+            item.setImUset(dao.getIMuser());
+            item.setIDS(dao.getSid());
+            return item;
+        } else if (type == 7) {
+            Log.e("ไฟล์+ข้อความ", "777");
+            JoinMessageFileListltem item;
+            if (convertView != null)
+                item = (JoinMessageFileListltem) convertView;
+            else
+                item = new JoinMessageFileListltem(parent.getContext());
 
-           return item;
-       }else if (type == 6){
-           Log.e("ไฟล์","666");
-           JoinMessageFileNonMessageListltem item;
-           if (convertView != null)
-               item = (JoinMessageFileNonMessageListltem) convertView;
-           else
-               item = new JoinMessageFileNonMessageListltem(parent.getContext());
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setUserName(dao.getUser());
+            item.setDataPost(dao.getTime());
+            item.setFileStatus(dao.getFilestatus());
+            item.setFileName(dao.getFilename());
+            item.setImUset(dao.getIMuser());
+            item.setStatus(dao.getStatus());
+            item.setIDS(dao.getSid());
+            return item;
+        } else if (type == 8) {
+            Log.e("ไฟล์+ข้อความ+จอย", "888");
+            FileMessageJoinListltem item;
+            if (convertView != null)
+                item = (FileMessageJoinListltem) convertView;
+            else
+                item = new FileMessageJoinListltem(parent.getContext());
 
-           StatusDao dao = (StatusDao) getItem(position);
-           item.setUserName(dao.getUser());
-           item.setDataPost(dao.getTime());
-           item.setFileStatus(dao.getFilestatus());
-           item.setImUset(dao.getIMuser());
-           item.setIDS(dao.getSid());
-           return item;
-       }else{
-           Log.e("ข้อความ+ภาพ","0000");
-           StatusListltem item;
-           if (convertView != null)
-               item = (StatusListltem) convertView;
-           else
-               item = new StatusListltem(parent.getContext());
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setStatus(dao.getStatus());
+            item.setUserName(dao.getUser());
+            item.setDataPost(dao.getTime());
+            item.setFileStatus(dao.getFilestatus());
+            item.setFileName(dao.getFilename());
+            item.setImUset(dao.getIMuser());
+            item.setIDS(dao.getSid());
+            item.setDataJoin(dao.getDataremind().toString() + " " + dao.getTimeremind());
+            return item;
+        }else if (type == 9) {
+            Log.e("ไฟล์+จอย", "1000");
+            FileMessageJoinListltem item;
+            if (convertView != null)
+                item = (FileMessageJoinListltem) convertView;
+            else
+                item = new FileMessageJoinListltem(parent.getContext());
 
-           StatusDao dao = (StatusDao) getItem(position);
-           item.setNameText(dao.getUser());
-           item.setStatus(dao.getStatus());
-           item.setDatapost(dao.getTime());
-           item.setImageUrl(dao.getIMstatus());
-           item.setUserStatus(dao.getIMuser());
-           return item;
-       }
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setStatus(dao.getStatus());
+            item.setUserName(dao.getUser());
+            item.setDataPost(dao.getTime());
+            item.setFileStatus(dao.getFilestatus());
+            item.setFileName(dao.getFilename());
+            item.setImUset(dao.getIMuser());
+            item.setIDS(dao.getSid());
+            item.setDataJoin(dao.getDataremind().toString() + " " + dao.getTimeremind());
+            return item;
+        } else {
+            Log.e("ข้อความ+ภาพ", "0000");
+            StatusListltem item;
+            if (convertView != null)
+                item = (StatusListltem) convertView;
+            else
+                item = new StatusListltem(parent.getContext());
+
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setNameText(dao.getUser());
+            item.setStatus(dao.getStatus());
+            item.setDatapost(dao.getTime());
+            item.setImageUrl(dao.getIMstatus());
+            item.setUserStatus(dao.getIMuser());
+            return item;
+        }
     }
 }

@@ -35,7 +35,7 @@ public class FirebaseInstanceIDService extends FirebaseInstanceIdService {
         Log.d(TAG,"Token: " + token);
 
         Request request = new Request.Builder()
-                .url("http://csmsucenter.com/cs_msu_club/PHPAndroid/register.php")
+                .url("http://202.28.34.201/CS_Msuclub/csmsuclub/Fcm-Fcm/php_scripts/register.php")
 //                .url("http://192.168.2.111/PHPAndroid/register.php")
                 .post(body)
                 .build();
