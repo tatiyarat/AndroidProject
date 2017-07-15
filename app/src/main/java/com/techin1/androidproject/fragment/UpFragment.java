@@ -3,6 +3,7 @@ package com.techin1.androidproject.fragment;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.techin1.androidproject.LoginActivity;
 import com.techin1.androidproject.R;
+import com.techin1.androidproject.activity.MenuGroupActivity;
+import com.techin1.androidproject.activity.ResetPasswordActivity;
 import com.techin1.androidproject.dao.Home;
 import com.techin1.androidproject.dao.upuser;
 import com.techin1.androidproject.manager.HTTPManager;
@@ -65,7 +69,7 @@ public class UpFragment extends Fragment implements View.OnClickListener {
         imup = (ImageView) rootView.findViewById(R.id.imup);
         imup.setOnClickListener(this);
 
-        getActivity().setTitle(getString(R.string.Home));
+        getActivity().setTitle(getString(R.string.Profilr));
 //        string = getString(R.string.title_activity_menu_group);
         butup = (Button) rootView.findViewById(R.id.butup);
         butup.setOnClickListener(this);
@@ -106,29 +110,34 @@ public class UpFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == imup) {
-            final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
 
-            alert.setTitle("แก้ไข");
-            //alert.setMessage("ยืนยันการเข้าร่วม");
-            alert.setIcon(R.mipmap.ic_launcher);
+            Intent intent = new Intent(getActivity(),
+                    ResetPasswordActivity.class);
+            startActivity(intent);
 
-            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-
-            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-
-            alert.create();
-
-            alert.show();
+//            final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+//
+//            alert.setTitle("แก้ไข");
+//            alert.setMessage("ยืนยันการเข้าร่วม");
+//            alert.setIcon(R.mipmap.ic_launcher);
+//
+//            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//
+//                }
+//            });
+//
+//            alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//
+//                }
+//            });
+//
+//            alert.create();
+//
+//            alert.show();
         }
         if (v == butup) {
 

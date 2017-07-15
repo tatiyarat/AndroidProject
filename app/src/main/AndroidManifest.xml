@@ -7,7 +7,7 @@
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -48,8 +48,13 @@
         <activity
             android:name=".activity.M_Message_JoinActivity"
             android:theme="@style/AppThemeMessage" />
+        <activity
+            android:name=".activity.ResetPasswordActivity"
+            android:theme="@style/AppThemeMessage" />
 
         <activity android:name=".activity.RemindActivity" />
+
+        <service android:name=".Service.MyService" />
 
         <service android:name=".Service.FirebaseMessagingService">
             <intent-filter>
@@ -64,9 +69,7 @@
 
         <activity
             android:name=".activity.MessageInMessageActivity"
-            android:theme="@style/AppThemeMessage" >
-        </activity>
-
+            android:theme="@style/AppThemeMessage"></activity>
     </application>
 
 </manifest>

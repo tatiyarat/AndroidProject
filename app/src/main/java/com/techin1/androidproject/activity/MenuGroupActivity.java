@@ -1,8 +1,13 @@
 package com.techin1.androidproject.activity;
 
+import android.annotation.TargetApi;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,12 +24,14 @@ import android.widget.Toast;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.techin1.androidproject.LoginActivity;
 import com.techin1.androidproject.R;
+import com.techin1.androidproject.Service.MyService;
 import com.techin1.androidproject.Session;
 import com.techin1.androidproject.dao.Home;
 import com.techin1.androidproject.dao.LogoutDao;
 import com.techin1.androidproject.fragment.GoupMenuFragment;
 import com.techin1.androidproject.fragment.GroupJoinFragment;
 import com.techin1.androidproject.fragment.HomeFragment;
+import com.techin1.androidproject.fragment.TimeFragment;
 import com.techin1.androidproject.fragment.UpFragment;
 import com.techin1.androidproject.manager.HTTPManager;
 
@@ -40,6 +47,8 @@ public class MenuGroupActivity extends AppCompatActivity
     private SharedPreferences sharedPreferences;
     private int idu;
 
+    private int year,month,day;
+
     String token = FirebaseInstanceId.getInstance().getToken();
 
     NavigationView navigationView = null;
@@ -49,7 +58,6 @@ public class MenuGroupActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_group);
-
 
         HomeFragment fragment = new HomeFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction =
@@ -138,40 +146,7 @@ public class MenuGroupActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void logout() {
-        session.setLoggedin(false);
-        finish();
-        startActivity(new Intent(MenuGroupActivity.this, LoginActivity.class));
-
-        Call<LogoutDao> call = HTTPManager.getInstances().getService().gettoken(token);
-        call.enqueue(new Callback<LogoutDao>() {
-            @Override
-            public void onResponse(Call<LogoutDao> call, Response<LogoutDao> response) {
-                LogoutDao dao = response.body();
-                if (response.isSuccessful()) {
-
-                    Toast.makeText(getApplication(), "Logout"
-                            , Toast.LENGTH_LONG)
-                            .show();
-                } else {
-                    Toast.makeText(getApplication(), "Log out fail!"
-                            , Toast.LENGTH_LONG)
-                            .show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LogoutDao> call, Throwable t) {
-                Toast.makeText(getApplication(), t.toString()
-                        , Toast.LENGTH_LONG)
-                        .show();
-
-                Log.e("error",t.toString());
-            }
-        });
-
-    }
-
+    @TargetApi(Build.VERSION_CODES.N)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -203,6 +178,20 @@ public class MenuGroupActivity extends AppCompatActivity
 
             Toast.makeText(this, "Group", Toast.LENGTH_SHORT).show();
 
+        } else if (id == R.id.nav_time) {
+            TimeFragment fragment = new TimeFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+
+            final Calendar cal = Calendar.getInstance();
+            year = cal.get(Calendar.YEAR);
+            month = cal.get(Calendar.MONTH);
+            day   = cal.get(Calendar.DAY_OF_MONTH);
+
+            Toast.makeText(this, ""+day, Toast.LENGTH_SHORT).show();
+
         } else if (id == R.id.nav_send) {
             logout();
         }
@@ -231,6 +220,45 @@ public class MenuGroupActivity extends AppCompatActivity
                 Toast.makeText(MenuGroupActivity.this, "NO..."
                         , Toast.LENGTH_LONG)
                         .show();
+            }
+        });
+    }
+
+    private void logout() {
+
+        Intent intent = new Intent(this, MyService.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1253, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.cancel(pendingIntent);
+
+        session.setLoggedin(false);
+        finish();
+        startActivity(new Intent(MenuGroupActivity.this, LoginActivity.class));
+
+        Call<LogoutDao> call = HTTPManager.getInstances().getService().gettoken(token);
+        call.enqueue(new Callback<LogoutDao>() {
+            @Override
+            public void onResponse(Call<LogoutDao> call, Response<LogoutDao> response) {
+                LogoutDao dao = response.body();
+                if (response.isSuccessful()) {
+
+                    Toast.makeText(getApplication(), "Logout"
+                            , Toast.LENGTH_LONG)
+                            .show();
+                } else {
+                    Toast.makeText(getApplication(), "Log out fail!"
+                            , Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LogoutDao> call, Throwable t) {
+                Toast.makeText(getApplication(), t.toString()
+                        , Toast.LENGTH_LONG)
+                        .show();
+
+                Log.e("error",t.toString());
             }
         });
     }

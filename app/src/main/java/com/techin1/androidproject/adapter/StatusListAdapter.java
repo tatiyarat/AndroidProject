@@ -16,6 +16,7 @@ import com.techin1.androidproject.view.JoinMessageListltem;
 import com.techin1.androidproject.view.JoinMessageNomMessgeListltem;
 import com.techin1.androidproject.view.JoinMessageNonImListltem;
 import com.techin1.androidproject.view.PhotoListItem;
+import com.techin1.androidproject.view.PostMessageListItem;
 import com.techin1.androidproject.view.StatusListltem;
 import com.techin1.androidproject.view.StatusNonImStatusListltem;
 import com.techin1.androidproject.view.StatusNonStatusListltem;
@@ -54,13 +55,16 @@ public class StatusListAdapter extends BaseAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 10;
+        return 11;
 //        return super.getViewTypeCount();
     }
 
     @Override
     public int getItemViewType(int position) {
 
+//        if (dao.getAdmin_group() == 2){
+//            return 10;
+//        }
         if (
                 dao.getData().get(position).getStatus().equals("") == true &&
                         dao.getData().get(position).getJoin().equals("1") == false &&
@@ -155,6 +159,20 @@ public class StatusListAdapter extends BaseAdapter {
         View v = convertView;
         int type = getItemViewType(position);
 
+
+/*        if (type == 10) {
+            PostMessageListItem item;
+            if (convertView != null)
+                item = (PostMessageListItem) convertView;
+            else
+                item = new PostMessageListItem(parent.getContext());
+
+            StatusDao dao = (StatusDao) getItem(position);
+            item.setUserName(dao.getUser());
+            item.serImageUrl(dao.getIMuser());
+
+            return item;
+        }*/
         if (type == 2) {
             Log.e("ข้อความ", "2222");
             StatusNonImStatusListltem item;

@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/user"
-            android:title="Profile" />
+            android:title="โปรไฟล์" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/book"
@@ -14,6 +14,10 @@
             android:id="@+id/nav_gallery2"
             android:icon="@drawable/groupjoin"
             android:title="กลุ่มที่ยังไม่เข้าร่วม" />
+        <item
+            android:id="@+id/nav_time"
+            android:icon="@drawable/groupjoin"
+            android:title="เวลา" />
     </group>
 
     <item android:title="CSMSUCLUB">

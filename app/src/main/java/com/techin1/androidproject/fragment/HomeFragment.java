@@ -21,6 +21,8 @@ import com.techin1.androidproject.R;
 import com.techin1.androidproject.dao.Home;
 import com.techin1.androidproject.manager.HTTPManager;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,7 +66,7 @@ public class HomeFragment extends Fragment{
 
         imuser = (ImageView) rootView.findViewById(R.id.imuser);
 
-        getActivity().setTitle(getString(R.string.Home));
+        getActivity().setTitle(getString(R.string.Profilr));
 //        string = getString(R.string.title_activity_menu_group);
 
         butup = (Button) rootView.findViewById(R.id.butup);
@@ -73,7 +75,7 @@ public class HomeFragment extends Fragment{
 //        FirebaseInstanceId.getInstance().getToken();
 
         String token = FirebaseInstanceId.getInstance().getToken();
-        Toast.makeText(getActivity(), token, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), token, Toast.LENGTH_SHORT).show();
         Log.d(TAG,"Token: " + token);
 
         return rootView;
@@ -84,7 +86,6 @@ public class HomeFragment extends Fragment{
 
         Call<Home> call = HTTPManager.getInstances().getService().getNameUser(idu);
         call.enqueue(new Callback<Home>() {
-
             @Override
             public void onResponse(Call<Home> call, Response<Home> response) {
                 Home dao = response.body();
@@ -103,13 +104,24 @@ public class HomeFragment extends Fragment{
                     Glide.with(getContext())
                             .load(dao.getIm())
                             .into(imuser);
+                }else {
+                    try {
+                        Toast.makeText(getActivity(),
+                                response.errorBody().string(),
+                                Toast.LENGTH_SHORT)
+                                .show();
+                        Log.e("error1",response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<Home> call, Throwable t) {
-                Toast.makeText(getActivity(),"NO...gethomeuser"
-                        , Toast.LENGTH_LONG)
+                Toast.makeText(getActivity(),
+                        t.toString(),
+                        Toast.LENGTH_SHORT)
                         .show();
             }
         });

@@ -44,7 +44,7 @@
                     android:fontFamily="Arial"
                     android:gravity="center"
                     android:text="name"
-                    android:textColor="#616161"
+                    android:textColor="@color/Black"
                     android:textSize="24dp" />
 
                 <LinearLayout

@@ -80,7 +80,7 @@ public class ViewpagerImageJoinFagment extends Fragment {
 
                 alert.setTitle("ยืนยันการเข้าร่วม");
                 alert.setMessage("ยืนยันการเข้าร่วม");
-                alert.setIcon(R.mipmap.ic_launcher);
+                alert.setIcon(R.drawable.confirm);
 
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override

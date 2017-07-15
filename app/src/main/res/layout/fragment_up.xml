@@ -23,17 +23,25 @@
                 android:layout_height="130dp"
                 android:src="@color/background" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imuser"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
+            <RelativeLayout
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
-                android:cropToPadding="false"
-                android:scaleType="centerCrop"
-                android:src="@drawable/profileuser"
-                app:civ_border_color="#c7cac7"
-                app:civ_border_width="2dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginTop="35dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imuser"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:cropToPadding="false"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profileuser"
+                    app:civ_border_color="#c7cac7"
+                    app:civ_border_width="2dp" />
+
+            </RelativeLayout>
+
+
         </RelativeLayout>
 
 
@@ -116,7 +124,7 @@
                                 android:id="@+id/tvpass"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:hint="Password"
+                                android:hint=""
                                 android:textColor="@color/Blue_Grey"
                                 android:textSize="16dp" />
 
@@ -129,7 +137,7 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_marginEnd="11dp"
                                 android:layout_marginRight="11dp"
-                                android:background="@drawable/update" />
+                                android:background="@drawable/selector_resetpassword" />
                         </RelativeLayout>
 
                     </LinearLayout>

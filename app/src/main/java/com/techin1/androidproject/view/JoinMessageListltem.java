@@ -1,6 +1,8 @@
 package com.techin1.androidproject.view;
 
 import android.annotation.TargetApi;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +22,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.inthecheesefactory.thecheeselibrary.view.BaseCustomViewGroup;
 import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
 import com.techin1.androidproject.LoginActivity;
+import com.techin1.androidproject.MainActivity;
 import com.techin1.androidproject.R;
+import com.techin1.androidproject.Service.MyService;
 import com.techin1.androidproject.activity.MenuGroupActivity;
 import com.techin1.androidproject.dao.Login;
 import com.techin1.androidproject.dao.StatusDao;
@@ -215,12 +219,13 @@ public class JoinMessageListltem extends BaseCustomViewGroup implements View.OnC
 
             alert.setTitle("ยืนยันการเข้าร่วม");
             alert.setMessage("ยืนยันการเข้าร่วม");
-            alert.setIcon(R.mipmap.ic_launcher);
+            alert.setIcon(R.drawable.confirm);
 
             alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     getJoin(idu, ids);
+
                 }
             });
 

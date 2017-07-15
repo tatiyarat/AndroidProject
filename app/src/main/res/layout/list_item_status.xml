@@ -40,14 +40,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="NameGroup" />
+                        android:text="NameGroup"
+                        android:textColor="@color/Black"
+                        android:textSize="16dp" />
 
                     <TextView
                         android:id="@+id/tvDatapost"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="Data" />
+                        android:text="Data"
+                        android:textColor="@color/Black" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -60,8 +63,8 @@
                 android:layout_marginRight="20dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:textSize="16dp"
-                android:text="STATUS STATUSSTATUS STATUS STATUS STATUS STATUS STATUS STATUS STATUS STATUS" />
+                android:text="STATUS STATUSSTATUS STATUS STATUS STATUS STATUS STATUS STATUS STATUS STATUS"
+                android:textSize="16dp" />
 
             <ImageView
                 android:id="@+id/imageStatus"

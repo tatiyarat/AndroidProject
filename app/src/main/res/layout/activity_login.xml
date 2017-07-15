@@ -47,7 +47,6 @@
                         android:background="@drawable/btn_default_normal"
                         android:gravity="center"
                         android:hint="Username"
-                        android:inputType="number"
                         android:singleLine="true" />
                 </RelativeLayout>
 

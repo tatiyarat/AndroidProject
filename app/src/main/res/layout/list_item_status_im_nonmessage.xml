@@ -40,14 +40,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="NameGroup" />
+                        android:text="NameGroup"
+                        android:textColor="@color/Black"
+                        android:textSize="16dp" />
 
                     <TextView
                         android:id="@+id/tvDatapost_non_message"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="Data" />
+                        android:text="Data"
+                        android:textColor="@color/Black" />
                 </LinearLayout>
             </RelativeLayout>
 

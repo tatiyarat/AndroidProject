@@ -13,6 +13,8 @@ import java.util.List;
 public class PhotoItemCollectinDao {
     @SerializedName("g")
     private int sumG;
+    @SerializedName("admin_group")
+    private int admin_group;
     @SerializedName("data")
     private List<StatusDao> data;
 
@@ -22,6 +24,14 @@ public class PhotoItemCollectinDao {
 
     public void setSumG(int sumG) {
         this.sumG = sumG;
+    }
+
+    public int getAdmin_group() {
+        return admin_group;
+    }
+
+    public void setAdmin_group(int admin_group) {
+        this.admin_group = admin_group;
     }
 
     public List<StatusDao> getData() {

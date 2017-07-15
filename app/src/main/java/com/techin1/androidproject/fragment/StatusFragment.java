@@ -49,7 +49,7 @@ public class StatusFragment extends Fragment {
     ListView listStatus;
     StatusListAdapter listAdapter;
     public SharedPreferences sharedPreferences;
-    int idg;
+    int idg,idu;
     SwipeRefreshLayout swipeRefreshLayout;
     Button btnNew;
     int idmessage;
@@ -73,6 +73,7 @@ public class StatusFragment extends Fragment {
 
         sharedPreferences = this.getActivity().getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
         idg = sharedPreferences.getInt("idgroup", 0);
+        idu = sharedPreferences.getInt("iduser", 0);
 
         initInstances(rootView, idg);
 
@@ -114,7 +115,7 @@ public class StatusFragment extends Fragment {
     }
 
     private void reloadData(int idg) {
-        Call<PhotoItemCollectinDao> call = HTTPManager.getInstances().getService().getstatus(idg);
+        Call<PhotoItemCollectinDao> call = HTTPManager.getInstances().getService().getstatus(idg,idu);
         call.enqueue(new Callback<PhotoItemCollectinDao>() {
             @Override
             public void onResponse(Call<PhotoItemCollectinDao> call,
@@ -134,6 +135,7 @@ public class StatusFragment extends Fragment {
                     listStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
 
                             if (dao.getData().get(position).getFormat().equals("9") ==true){
                                 Log.e("ไพล์","9");

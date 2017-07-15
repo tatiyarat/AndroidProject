@@ -1,19 +1,18 @@
 package com.techin1.androidproject.manager.http;
 
 
+import com.techin1.androidproject.dao.AddGroupJoinDao;
+import com.techin1.androidproject.dao.GetDateDao;
 import com.techin1.androidproject.dao.GroupJoinDataDao;
 import com.techin1.androidproject.dao.Groups;
-import com.techin1.androidproject.dao.GroupsJoinDao;
 import com.techin1.androidproject.dao.Home;
 import com.techin1.androidproject.dao.Login;
 import com.techin1.androidproject.dao.LogoutDao;
 import com.techin1.androidproject.dao.MessageDao;
 import com.techin1.androidproject.dao.PhotoItemCollectinDao;
-import com.techin1.androidproject.dao.StatusDao;
+import com.techin1.androidproject.dao.ResetPasswordDao;
 import com.techin1.androidproject.dao.inuserjoinDao;
 import com.techin1.androidproject.dao.upuser;
-
-import java.security.acl.Group;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -54,7 +53,8 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("status.php")
-    Call<PhotoItemCollectinDao> getstatus(@Field("IDG") int idg);
+    Call<PhotoItemCollectinDao> getstatus(@Field("IDG") int idg,
+                                          @Field("IDU") int idu);
 
     @FormUrlEncoded
     @POST("inmessage.php")
@@ -73,4 +73,18 @@ public interface APIService {
     @POST("logout.php")
     Call<LogoutDao> gettoken(@Field("token") String token);
 
+    @FormUrlEncoded
+    @POST("resetpassword.php")
+    Call<ResetPasswordDao> getresetpassword(@Field("uid") int uid,
+                                            @Field("old_password") String old_password,
+                                            @Field("New_password") String New_password);
+
+    @FormUrlEncoded
+    @POST("groupjoinadd.php")
+    Call<AddGroupJoinDao> getaddgroupjoin(@Field("uid") int uid,
+                                          @Field("gid") int gid);
+
+    @FormUrlEncoded
+    @POST("Get_Date_Calendar.php")
+    Call<GetDateDao> getdate(@Field("uid") int uid);
 }

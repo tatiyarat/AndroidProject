@@ -52,6 +52,4 @@ public class GroupsJoinDao {
     public void setDesign(String design) {
         this.design = design;
     }
-
-
 }
