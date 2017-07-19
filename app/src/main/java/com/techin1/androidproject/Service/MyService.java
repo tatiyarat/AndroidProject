@@ -36,13 +36,18 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+//        SharedPreferences sp = getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sp.edit();
+//        editor.putInt("idgroup", 2);
+//        editor.commit();
 
-        SharedPreferences sp = getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putInt("idgroup", 2);
-        editor.commit();
 
-        Intent i = new Intent(this, StatusActivity.class);
+
+//        Intent i = new Intent(this, StatusActivity.class);
+//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        String url = "http://202.28.34.201/CS_Msuclub/csmsuclub/Home/schedule.php";
+        Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -68,4 +73,5 @@ public class MyService extends Service {
 
         return super.onStartCommand(intent, flags, startId);
     }
+
 }

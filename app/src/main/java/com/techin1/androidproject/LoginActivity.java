@@ -1,5 +1,6 @@
 package com.techin1.androidproject;
 
+import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -18,13 +19,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.techin1.androidproject.Service.MyService;
 import com.techin1.androidproject.activity.MenuGroupActivity;
 import com.techin1.androidproject.dao.GetDateDao;
 import com.techin1.androidproject.dao.Login;
 import com.techin1.androidproject.manager.HTTPManager;
-import com.techin1.androidproject.manager.PhotoListManager;
 
 import java.io.IOException;
 
@@ -34,9 +33,9 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText etuser,etpass;
+    EditText etuser, etpass;
     Button butlogin;
-    String iduser,passuser;
+    String iduser, passuser;
     private Session session;
     String token = FirebaseInstanceId.getInstance().getToken();
 
@@ -53,8 +52,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         session = new Session(this);
-        if(session.loggedin()){
-            startActivity(new Intent(LoginActivity.this,MenuGroupActivity.class));
+        if (session.loggedin()) {
+            startActivity(new Intent(LoginActivity.this, MenuGroupActivity.class));
             finish();
         }
 
@@ -73,24 +72,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (v == butlogin){
+        if (v == butlogin) {
             iduser = etuser.getText().toString();
             passuser = etpass.getText().toString();
-            if (iduser.isEmpty() || passuser.isEmpty()){
-                Toast.makeText(LoginActivity.this,"กรุณาใส่ username || password"
+            if (iduser.isEmpty() || passuser.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "กรุณาใส่ username || password"
                         , Toast.LENGTH_LONG)
                         .show();
+            } else {
+                getResponseLogin(iduser, passuser, token);
             }
-            else {
-                getResponseLogin(iduser,passuser,token);
-            }
-
-//            Intent intent = new Intent(LoginActivity.this,
-//                    HomeActivity.class);
-//            startActivity(intent);
 
         }
     }
+
     private void getResponseLogin(String user, String pass, String token) {
 
         Call<Login> call = HTTPManager.getInstances().getService().getUser(user, pass, token);
@@ -100,16 +95,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call<Login> call, Response<Login> response) {
                 Login dao = response.body();
                 if (response.isSuccessful()) {
-                    if (dao.getSuccess()==1) {
+                    if (dao.getSuccess() == 1) {
 
                         session.setLoggedin(true);
 
-                        Toast.makeText(LoginActivity.this,""+dao.getName()
+                        Toast.makeText(LoginActivity.this, "" + dao.getName()
                                 , Toast.LENGTH_LONG)
                                 .show();
 
-                    Intent intent = new Intent(LoginActivity.this,
-                            MenuGroupActivity.class);
+                        Intent intent = new Intent(LoginActivity.this,
+                                MenuGroupActivity.class);
                         int id = dao.getId();
 
                         SharedPreferences sp = getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
@@ -117,18 +112,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         editor.putInt("iduser", id);
                         editor.commit();
 
-                        FirebaseMessaging.getInstance().subscribeToTopic(""+id);
-                        FirebaseInstanceId.getInstance().getToken();
+//                        FirebaseMessaging.getInstance().subscribeToTopic("" + id);
+//                        FirebaseInstanceId.getInstance().getToken();
 
-                    // เวลาแจ้งเตือน
-                    setTime(id);
-
-                    startActivity(intent);
+                        startActivity(intent);
                         finish();
 
+                        // เวลาแจ้งเตือน
+                        setTime(id);
 
                     } else {
-                        Toast.makeText(LoginActivity.this,"username password ไม่ถูกต้อง"
+                        Toast.makeText(LoginActivity.this, "username password ไม่ถูกต้อง"
                                 , Toast.LENGTH_LONG)
                                 .show();
                     }
@@ -149,8 +143,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setTime(int id) {
-        final Calendar cal = Calendar.getInstance();
-        final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //  final Calendar cal = Calendar.getInstance();
+        //  final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Call<GetDateDao> call = HTTPManager.getInstances().getService().getdate(id);
         call.enqueue(new Callback<GetDateDao>() {
@@ -159,16 +153,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 GetDateDao dao = response.body();
                 if (response.isSuccessful()) {
 
-                    for (int i = 0; i < dao.getData().size(); i++) {
-                        year = dao.getData().get(i).getYear();
-                        month = dao.getData().get(i).getMonth();
-                        day = dao.getData().get(i).getDay();
+                    if (dao.getSuccess() == 0) {
+                        Log.e("date", "null");
+                    } else {
+                        Log.e("date", ""+dao.getData().size());
+                        if (dao.getData().size() != 0){
+                            for (int i = 0; i < dao.getData().size(); i++) {
+                                year = dao.getData().get(i).getYear();
+                                month = dao.getData().get(i).getMonth();
+                                day = dao.getData().get(i).getDay();
 
-                        hour = dao.getData().get(i).getHh();
-                        minute = dao.getData().get(i).getMm();
+                                hour = dao.getData().get(i).getHh();
+                                minute = dao.getData().get(i).getMm();
 
-                        setTimeDate(year, month, day, hour, minute);
+                                setTimeDate(year, month, day, hour, minute);
+                            }
+                        }
+
                     }
+
 
                 } else {
                     try {
@@ -192,8 +195,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @TargetApi(Build.VERSION_CODES.N)
     private void setTimeDate(int year, int month, int day, int hour, int minute) {
+
         final Calendar cal = Calendar.getInstance();
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 

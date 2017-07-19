@@ -1,5 +1,6 @@
 package com.techin1.androidproject.Service;
 
+import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -37,12 +38,11 @@ import retrofit2.Response;
 /**
  * Created by TECHIN1 on 23/11/2559.
  */
-
+@TargetApi(Build.VERSION_CODES.N)
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService{
 
     public SharedPreferences sharedPreferences;
     private static int id = 0;
-    String me;
 
     private PendingIntent pIntent;
     private AlarmManager alarm;
@@ -52,12 +52,14 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     private int hour = 0;
     private int minute = 0;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-//        showNotification(remoteMessage.getData().get("message"));
 
-        if (remoteMessage.getData().get("type").equals("0") == true){
+//        Log.e("data",remoteMessage.getData().get("type"));
+        if (remoteMessage.getData() == null){
+            Log.e("type","ว่าง");
+        }else if (remoteMessage.getData().get("type").equals("0") == true){
             int uid = Integer.parseInt(remoteMessage.getData().get("uid"));
             String timeremind = remoteMessage.getData().get("timeremind");
             setTime(uid,timeremind);
@@ -65,7 +67,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             showNotification(remoteMessage.getData().get("gid"));
         }
 
-        Log.e("message",""+remoteMessage.getData().get("type"));
+        //Log.e("message",""+remoteMessage.getData().get("type"));
 
     }
 
@@ -102,10 +104,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setTime(int id, final String timeremind) {
-        final Calendar cal = Calendar.getInstance();
-        final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Call<GetDateDao> call = HTTPManager.getInstances().getService().getdate(id);
         call.enqueue(new Callback<GetDateDao>() {
@@ -149,7 +148,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void setTimeDate(int year, int month, int day, int hour, int minute, String timeremind) {
         final Calendar cal = Calendar.getInstance();
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

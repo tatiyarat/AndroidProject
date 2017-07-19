@@ -178,21 +178,22 @@ public class MenuGroupActivity extends AppCompatActivity
 
             Toast.makeText(this, "Group", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_time) {
-            TimeFragment fragment = new TimeFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
-
-            final Calendar cal = Calendar.getInstance();
-            year = cal.get(Calendar.YEAR);
-            month = cal.get(Calendar.MONTH);
-            day   = cal.get(Calendar.DAY_OF_MONTH);
-
-            Toast.makeText(this, ""+day, Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.nav_send) {
+        }
+//        else if (id == R.id.nav_time) {
+//            TimeFragment fragment = new TimeFragment();
+//            android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                    getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment);
+//            fragmentTransaction.commit();
+//
+//            final Calendar cal = Calendar.getInstance();
+//            year = cal.get(Calendar.YEAR);
+//            month = cal.get(Calendar.MONTH);
+//            day   = cal.get(Calendar.DAY_OF_MONTH);
+//
+//            Toast.makeText(this, ""+day, Toast.LENGTH_SHORT).show();
+//        }
+        else if (id == R.id.nav_send) {
             logout();
         }
 
