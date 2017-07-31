@@ -40,8 +40,6 @@ public class GoupMenuFragment extends Fragment {
 
     private int idu;
     int idg;
-    int LIMIT = 3;
-    int OFFSET = 0;
     ListView GlistView;
     GroupListAdapter groupListAdapter;
     public SharedPreferences sharedPreferences;
@@ -80,12 +78,13 @@ public class GoupMenuFragment extends Fragment {
         idu = sharedPreferences.getInt("iduser", 0);
 
 
-        Call<Groups> call = HTTPManager.getInstances().getService().getmenugroup(idu,LIMIT,OFFSET);
+        Call<Groups> call = HTTPManager.getInstances().getService().getmenugroup(idu);
         call.enqueue(new Callback<Groups>() {
             @Override
             public void onResponse(Call<Groups> call, Response<Groups> response) {
+                Groups dao = response.body();
                 if (response.isSuccessful()) {
-                    getGoups(response);
+                       getGoups(response);
                     Log.d("log_groupmenu",response.toString());
                 } else {
                     try {

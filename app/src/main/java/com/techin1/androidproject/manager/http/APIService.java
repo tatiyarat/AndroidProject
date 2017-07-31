@@ -2,6 +2,7 @@ package com.techin1.androidproject.manager.http;
 
 
 import com.techin1.androidproject.dao.AddGroupJoinDao;
+import com.techin1.androidproject.dao.ForgotPasswordDao;
 import com.techin1.androidproject.dao.GetDateDao;
 import com.techin1.androidproject.dao.GroupJoinDataDao;
 import com.techin1.androidproject.dao.Groups;
@@ -42,14 +43,11 @@ public interface APIService {
     Call<upuser> upuser (@Field("Snic") String Snic,
                          @Field("Snumber") String Snumber,
                          @Field("Semail") String Semail,
-                         @Field("idu") int idu,
-                         @Field("pass") String pass);
+                         @Field("idu") int idu);
 
     @FormUrlEncoded
     @POST("menugroup.php")
-    Call<Groups> getmenugroup(@Field("idu") int idu,
-                              @Field("LIMIT") int LIMIT,
-                              @Field("OFFSET") int OFFSET);
+    Call<Groups> getmenugroup(@Field("idu") int idu);
 
     @FormUrlEncoded
     @POST("status.php")
@@ -87,4 +85,8 @@ public interface APIService {
     @FormUrlEncoded
     @POST("Get_Date_Calendar.php")
     Call<GetDateDao> getdate(@Field("uid") int uid);
+
+    @FormUrlEncoded
+    @POST("../Forgot_Password/ForgotPassword.php")
+    Call<ForgotPasswordDao> getEmail(@Field("email") String email);
 }

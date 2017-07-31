@@ -87,14 +87,14 @@ public class ViewpagerImageMessageFagment extends Fragment {
                 alert.setMessage("ยืนยันการเข้าร่วม");
                 alert.setIcon(R.drawable.confirm);
 
-                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         getJoin(idu, ids);
                     }
                 });
 
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 

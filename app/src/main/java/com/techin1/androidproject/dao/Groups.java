@@ -11,6 +11,8 @@ import java.util.List;
 
 public class Groups {
 
+    @SerializedName("success")
+    private int success;
     @SerializedName("gname")
     private List<String> Gname = new ArrayList<>();
     @SerializedName("g")
@@ -19,6 +21,14 @@ public class Groups {
     private List<Integer> IDG = new ArrayList<>();
     @SerializedName("IMGroup")
     private List<String> IMGroup = new ArrayList<>();
+
+    public int getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(int success) {
+        this.success = success;
+    }
 
     public List<String> getGname() {
         return Gname;

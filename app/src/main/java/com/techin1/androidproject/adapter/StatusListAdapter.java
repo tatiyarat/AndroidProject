@@ -65,6 +65,7 @@ public class StatusListAdapter extends BaseAdapter {
 //        if (dao.getAdmin_group() == 2){
 //            return 10;
 //        }
+
         if (
                 dao.getData().get(position).getStatus().equals("") == true &&
                         dao.getData().get(position).getJoin().equals("1") == false &&

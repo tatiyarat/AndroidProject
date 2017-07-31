@@ -30,9 +30,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="30dp"
                     android:gravity="center"
-                    android:text="LOGIN"
+                    android:text="เข้าสู่ระบบ"
                     android:textColor="@color/Lime1"
-                    android:textSize="45sp" />
+                    android:textSize="35sp" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -45,8 +45,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="80dp"
                         android:background="@drawable/btn_default_normal"
-                        android:gravity="center"
-                        android:hint="Username"
+                        android:hint="รหัสประจำตัว"
                         android:singleLine="true" />
                 </RelativeLayout>
 
@@ -61,8 +60,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="80dp"
                         android:background="@drawable/btn_default_normal"
-                        android:gravity="center"
-                        android:hint="Password"
+                        android:hint="รหัสผ่าน"
                         android:inputType="textPassword" />
                 </RelativeLayout>
 
@@ -79,8 +77,25 @@
                         android:layout_marginLeft="80dp"
                         android:layout_marginTop="50dp"
                         android:background="@drawable/selector_btn_default"
-                        android:text="LOGIN" />
+                        android:text="เข้าสู่ระบบ"
+                        android:textSize="16dp" />
 
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/ForgotPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="40dp"
+                        android:background="@android:color/transparent"
+                        android:text="ลืมรหัสผ่าน ?"
+                        android:textColor="@color/White"
+                        android:textSize="14dp" />
                 </RelativeLayout>
 
 

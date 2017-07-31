@@ -39,11 +39,12 @@ import retrofit2.Response;
  * Created by TECHIN1 on 23/11/2559.
  */
 @TargetApi(Build.VERSION_CODES.N)
-public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService{
+public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
     public SharedPreferences sharedPreferences;
     private static int id = 0;
 
+    private int i=0;
     private PendingIntent pIntent;
     private AlarmManager alarm;
     private int year = 0;
@@ -56,51 +57,52 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
+//        type 1 = โพสต์ , 2 = จอย
 //        Log.e("data",remoteMessage.getData().get("type"));
-        if (remoteMessage.getData() == null){
-            Log.e("type","ว่าง");
-        }else if (remoteMessage.getData().get("type").equals("0") == true){
+        if (remoteMessage.getData() == null) {
+            Log.e("type", "ว่าง");
+        } else if (remoteMessage.getData().get("type").equals("0") == true) {
             int uid = Integer.parseInt(remoteMessage.getData().get("uid"));
             String timeremind = remoteMessage.getData().get("timeremind");
-            setTime(uid,timeremind);
-        }else if (remoteMessage.getData().get("type").equals("1") == true){
-            showNotification(remoteMessage.getData().get("gid"));
+            setTime(uid, timeremind);
+        } else if (remoteMessage.getData().get("type").equals("1") == true) {
+            showNotification(remoteMessage.getData().get("gid"), remoteMessage.getData().get("gname"));
         }
 
         //Log.e("message",""+remoteMessage.getData().get("type"));
 
     }
 
-    private void showNotification(String gid) {
+    private void showNotification(String gid, String gname) {
 
         SharedPreferences sp = getSharedPreferences("MY_PREFERENCE", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("idgroup", Integer.parseInt(gid));
         editor.commit();
 
-        Intent i = new Intent(this,StatusActivity.class);
+        Intent i = new Intent(this, StatusActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setAutoCancel(true)
-                .setContentTitle("ข้อความใหม่"+gid)
+                .setContentTitle("ข้อความใหม่")
                 .setWhen(System.currentTimeMillis())
-                .setContentText(gid)
+                .setContentText(gname)
                 .setTicker("้มีข้อความใหม่")
-                .setSmallIcon(R.drawable.ic_communication_email)
+                .setSmallIcon(R.drawable.ic_action_action_account_box)
                 .setContentIntent(pendingIntent);
 
         Uri sound = RingtoneManager.getDefaultUri(Notification.DEFAULT_VIBRATE);
         builder.setSound(sound);
 
-        Bitmap picture = BitmapFactory.decodeResource(getResources(), R.drawable.ic_content_drafts);
+        Bitmap picture = BitmapFactory.decodeResource(getResources(), R.drawable.icon2csmsuclub);
         builder.setLargeIcon(picture);
 
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         ++id;
-        manager.notify(id,builder.build());
+        manager.notify(id, builder.build());
 
     }
 
@@ -112,19 +114,23 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             public void onResponse(Call<GetDateDao> call, Response<GetDateDao> response) {
                 GetDateDao dao = response.body();
                 if (response.isSuccessful()) {
+                    if (dao.getSuccess() == 0) {
+                        Log.e("date", "0");
+                    } else {
+                        if (dao.getData().size() != 0) {
+                            for (int i = 0; i < dao.getData().size(); i++) {
+                                year = dao.getData().get(i).getYear();
+                                month = dao.getData().get(i).getMonth();
+                                day = dao.getData().get(i).getDay();
 
-                    for (int i = 0; i < dao.getData().size(); i++) {
-                        year = dao.getData().get(i).getYear();
-                        month = dao.getData().get(i).getMonth();
-                        day = dao.getData().get(i).getDay();
+                                hour = dao.getData().get(i).getHh();
+                                minute = dao.getData().get(i).getMm();
 
-                        hour = dao.getData().get(i).getHh();
-                        minute = dao.getData().get(i).getMm();
+                                setTimeDate(year, month, day, hour, minute, timeremind);
+                            }
+                        }
 
-                        setTimeDate(year, month, day, hour, minute, timeremind);
                     }
-
-
 
                 } else {
                     try {
@@ -152,16 +158,17 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         final Calendar cal = Calendar.getInstance();
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        cal.set(year, month - 1, day, hour, minute);
+        cal.set(year, month - 1, day, hour, minute, 00);
         Log.e("date", "" + sdf.format(cal.getTime()));
 
         Intent intent = new Intent(getApplication(), MyService.class);
         intent.putExtra("date", timeremind);
-        pIntent = PendingIntent.getService(getApplication(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        pIntent = PendingIntent.getService(getApplication(), i, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
 
         alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarm.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pIntent);
+        i++;
     }
 
 }

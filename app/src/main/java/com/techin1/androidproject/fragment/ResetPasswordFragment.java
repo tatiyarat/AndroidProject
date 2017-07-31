@@ -1,5 +1,6 @@
 package com.techin1.androidproject.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.techin1.androidproject.R;
+import com.techin1.androidproject.activity.ForgotPasswordActivity;
 import com.techin1.androidproject.dao.LogoutDao;
 import com.techin1.androidproject.dao.ResetPasswordDao;
 import com.techin1.androidproject.manager.HTTPManager;
@@ -68,6 +70,11 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
     }
 
     private void resetpassword(int idu, String oldpass, String newpass) {
+
+        final ProgressDialog dialog = ProgressDialog.show(getActivity(), "",
+                "กรุณารอสักครู่...", true);
+        dialog.show();
+
         Call<ResetPasswordDao> call = HTTPManager.getInstances().getService().getresetpassword(idu, oldpass, newpass);
         call.enqueue(new Callback<ResetPasswordDao>() {
             @Override
@@ -81,12 +88,16 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
                     if (dao.getResetpassword().equals("เรียบร้อย")) {
                         old_password.setText("");
                         new_password.setText("");
+                        dialog.dismiss();
+                    }else{
+                        dialog.dismiss();
                     }
 
                 } else {
                     Toast.makeText(getActivity(), "fail!"
                             , Toast.LENGTH_SHORT)
                             .show();
+                    dialog.dismiss();
                 }
             }
 
@@ -96,6 +107,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
                         t.toString(),
                         Toast.LENGTH_SHORT)
                         .show();
+                dialog.dismiss();
             }
         });
     }

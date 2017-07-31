@@ -162,7 +162,7 @@ public class GroupJoinFragment extends Fragment {
         alert.setMessage("ยืนยันการเข้าร่วมกลุ่ม");
         alert.setIcon(R.drawable.confirm);
 
-        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alert.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 groupjain(uid,gid);
@@ -170,7 +170,7 @@ public class GroupJoinFragment extends Fragment {
 
         });
 
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

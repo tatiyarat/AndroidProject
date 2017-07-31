@@ -202,14 +202,14 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="0.6"
-                            android:text="E-mail" />
+                            android:text="อีเมล" />
 
                         <EditText
                             android:id="@+id/tvemail"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1.4"
-                            android:hint="email"
+                            android:hint="อีเมล"
                             android:singleLine="true"
                             android:textColor="@color/Blue_Grey"
                             android:textSize="16dp" />

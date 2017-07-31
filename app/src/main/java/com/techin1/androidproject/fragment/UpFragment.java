@@ -91,7 +91,6 @@ public class UpFragment extends Fragment implements View.OnClickListener {
                     tvnickname.setText(dao.getNickname());
                     tvnumber.setText(dao.getNumber());
                     tvemail.setText(dao.getMail());
-//                    tvpass.setText(dao.getPass());
                 }
                 Glide.with(getContext())
                         .load(dao.getIm())
@@ -141,32 +140,33 @@ public class UpFragment extends Fragment implements View.OnClickListener {
         }
         if (v == butup) {
 
-//            Spass = tvpass.getText().toString();
             Snic = tvnickname.getText().toString();
             Snumber = tvnumber.getText().toString();
             Semail = tvemail.getText().toString();
-            upuser(Snic, Snumber, Semail, idu, Spass);
+            upuser(Snic, Snumber, Semail, idu);
         }
     }
 
-    private void upuser(String Snic, String Snumber, String Semail, int idu, String Spass) {
+    private void upuser(String Snic, String Snumber, String Semail, int idu) {
 
-        Call<upuser> call = HTTPManager.getInstances().getService().upuser(Snic, Snumber, Semail, idu, Spass);
+        Call<upuser> call = HTTPManager.getInstances().getService().upuser(Snic, Snumber, Semail, idu);
         call.enqueue(new Callback<upuser>() {
             @Override
             public void onResponse(Call<upuser> call, Response<upuser> response) {
                 upuser dao = response.body();
                 if (response.isSuccessful()) {
-//                    Toast.makeText(UpFragment.this,"up Ok"
-//                            , Toast.LENGTH_LONG)
-//                            .show();
-                    Toast.makeText(getActivity(), "up Ok", Toast.LENGTH_LONG).show();
+                    if (dao.getSuccess() == 1) {
+                        Toast.makeText(getActivity(), dao.getUpdate(), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getActivity(), dao.getUpdate(), Toast.LENGTH_LONG).show();
+                    }
+
                 }
             }
 
             @Override
             public void onFailure(Call<upuser> call, Throwable t) {
-                Toast.makeText(getActivity(), "NO UP", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), t.toString(), Toast.LENGTH_LONG).show();
             }
         });
     }

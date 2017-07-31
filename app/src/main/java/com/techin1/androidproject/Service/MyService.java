@@ -54,17 +54,17 @@ public class MyService extends Service {
 
         android.support.v4.app.NotificationCompat.Builder builder = new android.support.v4.app.NotificationCompat.Builder(this)
                 .setAutoCancel(true)
-                .setContentTitle("ข้อความใหม่")
+                .setContentTitle("แจ้งเตือนกิจกรรม")
                 .setWhen(System.currentTimeMillis())
                 .setContentText("แจ้งเตือนกิจกรรม")
                 .setTicker("้มีข้อความใหม่")
-                .setSmallIcon(R.drawable.ic_communication_email)
+                .setSmallIcon(R.drawable.ic_action_action_account_box)
                 .setContentIntent(pendingIntent);
 
         Uri sound = RingtoneManager.getDefaultUri(Notification.DEFAULT_ALL);
         builder.setSound(sound);
 
-        Bitmap picture = BitmapFactory.decodeResource(getResources(), R.drawable.ic_content_drafts);
+        Bitmap picture = BitmapFactory.decodeResource(getResources(), R.drawable.icon2csmsuclub);
         builder.setLargeIcon(picture);
 
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

@@ -11,12 +11,22 @@ import java.util.List;
  */
 
 public class PhotoItemCollectinDao {
+    @SerializedName("success")
+    private int success;
     @SerializedName("g")
     private int sumG;
     @SerializedName("admin_group")
     private int admin_group;
     @SerializedName("data")
     private List<StatusDao> data;
+
+    public int getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(int success) {
+        this.success = success;
+    }
 
     public int getSumG() {
         return sumG;

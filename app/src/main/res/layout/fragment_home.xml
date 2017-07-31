@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="Arial"
                     android:gravity="center"
-                    android:text="name"
+                    android:text="ชื่อ"
                     android:textColor="@color/Black"
                     android:textSize="24dp" />
 
@@ -58,7 +58,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
-                        android:text="รหัสนิสิต" />
+                        android:text="รหัสประจำตัว" />
 
                     <TextView
                         android:id="@+id/tviduser"
@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.5"
                         android:gravity="right"
-                        android:text="IDUSER"
+                        android:text="รหัสประจำตัว"
                         android:textColor="@color/Blue_Grey"
                         android:textSize="16dp" />
                 </LinearLayout>
@@ -130,7 +130,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
-                        android:text="E-mail" />
+                        android:text="อีเมล" />
 
                     <TextView
                         android:id="@+id/tvemail"
@@ -138,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.5"
                         android:gravity="right"
-                        android:text="email"
+                        android:text="อีเมล"
                         android:textColor="@color/Blue_Grey"
                         android:textSize="16dp" />
                 </LinearLayout>
